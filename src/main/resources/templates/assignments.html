@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset = "ISO-8859-1">
+<title>Student Assignment Management System </title>
+<link rel="stylesheet" 
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+    crossorigin="anonymous">
+</head>
+
+<body>
+    <div class ="container">
+        <div class = "row">
+            <h1> List Of Assignments</h1>
+        </div>
+        <div class = "row">
+            <div class = "col-lg-3">
+                <a th:href = "@{/assignments/new}" class ="btn btn-primary btn-sm mb-3"> ADD ASSIGNMENT</a>
+                
+            </div>
+        </div>
+        <table class ="table table-striped table-bordered">
+            <thread class= "table-dark">
+                 <tr>
+                     <th> ASSIGNMENT</th>
+                     <th> INSTRUCTIONS </th>
+                     <th> MARKS</th>
+                     <th> DEADLINE</th>
+                     <th> ACTIONS</th>
+                 </tr>
+            
+            </thread>
+            
+            <tbody>
+                <tr th:each= "assignment: ${assignments}">
+                   <td th:text = "${assignment.Sub}"></td>
+                   <td th:text = "${assignment.Que}"></td>
+                   <td th:text = "${assignment.Mar}"></td>
+                   <td th:text = "${assignment.Dat}"></td>
+                   <td>
+                       <a th:href = "@{/assignments/edit/{id}(id=${assignment.id})}"
+                        class = "btn btn-primary">UPDATE</a>
+                        <a th:href = "@{/assignments/{id}(id=${assignment.id})}"
+                        class = "btn btn-danger">DELETE</a>
+                   </td>
+                </tr>
+            </tbody>
+        </table>
+    </div> 
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assign.ly</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shorthandcss@1.1.1/dist/shorthand.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Muli:200,300,400,500,600,700,800,900&display=swap" />
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Custom Scroll bar -->
+    <link rel="stylesheet" href="/css/OverlayScrollbars.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/js/jquery.overlayScrollbars.min.js"></script>
+    
+   
+</head>
+
+<body class="muli">
+    <script>
+    $(function($){
+            "use strict";
+            $('body').overlayScrollbars({
+                className: "os-theme-dark",
+            })
+        })
+    </script>
+    <nav class="w-100pc flex flex-column md-flex-row md-px-10 py-5 bg-primary">
+        <div class="flex justify-between mx-4 md-mx-s1 lg-mx-l3">
+            <a href="#" class="flex items-center p-2  no-underline lh-2 white fs-m3 md-fs-x13 md-lh-1 fw-900">
+                <!-- <img class="max-h-l2 w-auto" src="assets/images/logo.png" /> -->
+                Assign.ly
+            </a>
+            <a data-toggle="toggle-nav" data-target="#nav-items" href="#"
+                class="flex items-center ml-auto md-hidden indigo-lighter opacity-50 hover-opacity-100 ease-100 p-1 m-3">
+                <img src="/assets/icons/menu.svg">
+            </a>
+        </div>
+        <div id="nav-items" class="hidden flex sm-w-100pc flex-column md-flex md-flex-row md-justify-end items-center">
+            <a href="#home" class="fs-s1 mx-3 py-3 white no-underline hover-underline">Home</a>
+            <a href="#features" class="fs-s1 mx-3 py-3 white no-underline hover-underline">Features</a>
+            <div id="dropdown" class="relative inline-block flex mx-5">
+                <a href="#" class="button bg-sec white fw-600 no-underline hover-opacity-100 ease-100" data-toggle="dropdown">
+                    Log In
+                    <img src="assets/icons/chevron-down.svg" class="h-3 w-3 ml-1">
+                    <!-- <div class="icon chevron-down w-3 h-3"></div> -->
+                </a>
+                <div class="dropdown-menu absolute z-100 top-100pc py-1 fs-s1 ">
+                    <div class="shadow-3 br-6 bg-white  border">
+                        <a class="dropdown-item p-3 hover-bg-gray-lightest no-underline hover-scale-up-1 ease-100 fw-600" href="/login/teacher">Teacher</a>
+                        <a class="dropdown-item p-3 hover-bg-gray-lightest no-underline hover-scale-up-1 ease-100 fw-600" href="/login/student">Student</a>
+                    </div>
+                 </div>
+
+            </div>
+        </div>
+    </nav>
+
+    <!-- hero section -->
+    <section id="home" class="bg-primary">
+        <div class="container">
+            <div class="px-5 md-pr-l5">
+                        <h1 class="white opacity-100">Create and Manage<br> Assignments</h1>
+                    
+                    <div class="white opacity-70 fs-10 md-fs-x13 mt-3">
+        <div class="white fw-600 fs-10 md-fs-m1 lh-3 opacity-80">Assign.ly is an assignment managment solution, <br id="desc"> designed to help teachers create and manage assignments.</div>
+                    </div>
+                    <a href="/register"
+                            class="bg-sec mt-5 button  fs-s9 white no-underline hover-opacity-100 hover-scale-up-1 ease-100 opacity-90 fw-700">Sign Up</a>
+            </div>
+        </div>
+        <div class="container1">
+            <img class="scale1" src="/assets/images/icon.png" alt="img">
+        </div>
+    </section>
+
+    <!-- features -->
+    <section id="features" class="p-10 md-p-l5">
+        <div class="flex flex-column md-flex-row mx-auto">
+            <div class="w-100pc md-w-40pc">
+                <div class="br-8 p-5 m-5">
+                    <div class="flex justify-center items-center bg-black-10 black w-l5 h-l5 br-round mb-5">
+                        <img src="assets/icons/cloud.svg" alt="">
+                    </div>
+                    <h4 class="black fw-600 fs-m3 mb-5">Cloud</h4>
+                    <div class="black fw-600 fs-m1 lh-3 opacity-50 feature-text">We use Heroku as our hosting provider. Heroku is a platform for deploying contianers with integrated data services and a powerful ecosystem.</div>
+                    <a href="https://www.heroku.com/" target="_blank"
+                        class="mt-5 button bg-primary 10 fs-s3 white no-underline hover-opacity-100 hover-scale-up-1 ease-100">Read</a>
+                </div>
+            </div>
+            <div class="w-100pc md-w-40pc">
+                <div class="br-8 p-5 m-5">
+                    <div class="flex justify-center items-center bg-black-10 black w-l5 h-l5 br-round mb-5">
+                        <img src="assets/icons/cpu.svg" alt="">
+                    </div>
+                    <h4 class="black fw-600 fs-m3 mb-5">Backend</h4>
+                    <div class="black fw-600 fs-m1 opacity-50 feature-text">We use Java Spring Boot for the backend. Spring Boot makes it easy to create stand-alone, production-grade Spring based Applications that you can "just run".</div>
+                    <a href="https://spring.io/projects/spring-boot" target="_blank"
+                        class="mt-5 button bg-primary fs-s3 white no-underline hover-opacity-100 hover-scale-up-1 ease-100">Read</a>
+                </div>
+            </div>
+            <div class="w-100pc md-w-40pc">
+                <div class="br-8 p-5 m-5">
+                    <div class="flex justify-center items-center bg-black-10 black w-l5 h-l5 br-round mb-5">
+                        <img src="assets/icons/database.svg" alt="">
+                    </div>
+                    <h4 class="black fw-600 fs-m3 mb-5">Database</h4>
+                    <div class="black fw-600 fs-m1 opacity-50 feature-text">We use remotemysql as our database. Remotemysql is a free and secure database hosting platform which uses phpmyadmin as an interface. </div>
+                    <a href="https://remotemysql.com" target="_blank"
+                        class="mt-5 button bg-primary fs-s3 white no-underline hover-opacity-100 hover-scale-up-1 ease-100">Read</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- footer -->
+    <footer class="p-5 md-p-l5 bg-indigo-lightest-10 bg-primary">
+            <div class="flex">
+                <div class="md-w-25pc mb-10">
+                    <img src="assets/images/logo.png" class="w-l5" alt="">
+                    <div class="white opacity-70 fs-s2 mt-4 md-pr-10 pr-5">
+                        <p>Assign.ly is an assignment managment solution,
+                            designed to help teachers create and manage assignments.</p>
+                        <br>
+                        <p>It was created using java spring boot, heroku, docker and remotemysql.</p>
+                    </div>
+                </div>
+                <div class="w-100pc md-w-100pc">
+                    <div class="flex">
+                        <div class="w-100pc md-px-10 mb-10 mt-10">
+                            <h5 class="white">Created by</h5>
+                            <div class="flex justify-between flex-wrap my-8">
+                                <div class="github mb-4">
+                                    <a href="https://github.com/upsurge0" target="_blank" class="relative p-5 bg-indigo br-round white hover-scale-up-1 ease-400"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github absolute-center h-4"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+                                    <span class="white ml-3">Austin</span>
+                                </div>
+                                <div class="github mb-4">
+                                    <a href="https://github.com/shreyanshjamuar" target="_blank" class="relative p-5 bg-indigo br-round white hover-scale-up-1 ease-400"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github absolute-center h-4"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+                                    <span class="white ml-3">Shreyansh</span>
+                                </div>
+                                <div class="github mb-4">
+                                    <a href="https://github.com/shivanshjaitly" target="_blank" class="relative p-5 bg-indigo br-round white hover-scale-up-1 ease-400"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github absolute-center h-4"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+                                    <span class="white ml-3">Shivansh</span>
+                                </div>
+                                <div class="github mb-4">
+                                    <a href="https://github.com/sairamteja117" target="_blank" class="relative p-5 bg-indigo br-round white hover-scale-up-1 ease-400"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github absolute-center h-4"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a>
+                                    <span class="white ml-3">Sairamteja</span>
+                                </div>
+                            </div>
+        
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll@15.0.0/dist/smooth-scroll.polyfills.min.js"></script>
+    <script src="assets/js/script.js"></script>
+</body>
+
+</html>

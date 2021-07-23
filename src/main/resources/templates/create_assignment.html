@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset = "ISO-8859-1">
+<title>Student Assignment Management System </title>
+<link rel="stylesheet" 
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+    crossorigin="anonymous">
+</head>
+<body>
+    <div class = "container">
+        <div class = "row">
+            <div class = "col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+                <h1 class = "text-center"> CREATE NEW ASSIGNMENT</h1>
+                <div class = "card-body">
+                    <form th:action="@{/assignments}" th:object = "${assignment}" method ="POST">
+                        <div class = "form-group">
+                            <label> TITLE OF ASSIGNMENT</label>
+                            <input
+                            type="text"
+                            name="Sub"
+                            th:field = "*{Sub}"
+                            class = "form-control"
+                            placeholder="TITLE OF ASSIGNMENT"
+                            />
+                        </div>
+                        
+                        <div class = "form-group">
+                            <label> INSTRUCTIONS</label>
+                            <input
+                            type="text"
+                            name="Que"
+                            th:field = "*{Que}"
+                            class = "form-control"
+                            placeholder="INSTRUCTIONS"
+                            />
+                        </div>
+                        
+                        <div class = "form-group">
+                            <label>MARKS</label>
+                            <input
+                            type="text"
+                            name="Mar"
+                            th:field = "*{Mar}"
+                            class = "form-control"
+                            placeholder="ENTER THE MAX MARKS"
+                            />
+                        </div>
+                        
+                        <div class = "form-group">
+                            <label> DEADLINE</label>
+                            <input
+                            type="text"
+                            name="Dat"
+                            th:field = "*{Dat}"
+                            class = "form-control"
+                            placeholder="ENTER THE DEADLINE"
+                            />
+                        </div>
+                        
+                        <div class = "box-footer">
+                            <button type="submit" class = "btn btn-primary">
+                            SUBMIT
+                            </button>
+                        </div>
+                    
+                    </form>
+                
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
