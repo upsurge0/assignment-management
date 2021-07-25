@@ -72,7 +72,8 @@ body {
     background-color: var(--bg-primary) !important;
 }
 
-
+.grow { transition: all .1s ease-in-out; }
+.grow:hover { transform: scale(1.05); }
 
 .feature-text {
     min-height: 7.5rem;
