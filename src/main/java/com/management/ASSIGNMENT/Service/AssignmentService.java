@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.management.ASSIGNMENT.Entity.Assignment;
 
-public interface StudentService {
+public interface AssignmentService {
 	List<Assignment> getAllAssignments();
 	
 	Assignment saveAssignment(Assignment assignment);

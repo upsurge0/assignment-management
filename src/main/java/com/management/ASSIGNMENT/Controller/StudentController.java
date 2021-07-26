@@ -1,21 +1,25 @@
 package com.management.ASSIGNMENT.Controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.management.ASSIGNMENT.Entity.Assignment;
-import com.management.ASSIGNMENT.Service.StudentService;
+import com.management.ASSIGNMENT.Entity.Student;
+import com.management.ASSIGNMENT.Repository.StudentRepository;
+import com.management.ASSIGNMENT.Service.AssignmentService;
 
 @Controller
 public class StudentController {
 	
-	private StudentService studentService;
+	private AssignmentService studentService;
 
-	public StudentController(StudentService studentService) {
+	public StudentController(AssignmentService studentService) {
 		super();
 		this.studentService = studentService;
 	}
@@ -51,6 +55,27 @@ public class StudentController {
 	@GetMapping("/login/teacher")
 	public String login_teacher() {
 		return "login/teacher/teacher-login";
+	}
+	
+	//Handle Login/Register
+	@Autowired
+	StudentRepository perRepo;
+	
+	@PostMapping("/processregister")
+	public String registerSubmit(Student person) {
+		perRepo.save(person);
+		return "login";
+	}
+	
+	@PostMapping("/loginsubmit")
+	public String loginSubmit(@RequestParam String email, @RequestParam String password) {
+		Student tempPerson = perRepo.findByEmail(email);
+		
+		if(tempPerson!=null && tempPerson.getPassword().equals(password)) { 
+			return "success";
+		}
+		
+		return "error";
 	}
 	
 	//handler method to handle list students and mode and view

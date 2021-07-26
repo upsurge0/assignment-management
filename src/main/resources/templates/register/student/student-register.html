@@ -68,25 +68,25 @@
         <div class="flex flex-row md-flex-row mx-auto justify-center ">
             <div class="flex flex-column asap my-auto login-div">
                 <span class="mx-auto mb-4 fs-m5 fw-700">Register | Student</span>
-                <form class="p-10 border shadow br-8 md-w-50pc mx-auto">
+                <form th:action="@{/processregister}" method="post" class="p-10 border shadow br-8 md-w-50pc mx-auto">
                   <div class="flex flex-column">
                     <label class="my-1 black fw-600" for="email-input">Email</label>
-                    <input type="email" class="input" id="email-input">
+                    <input type="email" class="input" name="email" id="email-input">
                   </div>
                   <div class="flex flex-column mt-3">
                     <label class="my-1 black fw-600" for="password-input">Password</label>
-                    <input type="password" class="input" id="password-input">
+                    <input type="password" class="input" name="password" id="password-input">
                   </div>
-                  <div class="flex flex-column mt-3">
+                  <!--<div class="flex flex-column mt-3">
                     <label class="my-1 black fw-600" for="password-input">Confirm Password</label>
                     <input type="password" class="input" id="password-confirm">
-                  </div>
+                  </div>-->
                   <!-- <div class="flex items-center mt-4">
                       <input type="checkbox" class="checkbox mr-3" id="tnc-input">
                       <label class="form-check-label" for="tnc-input">Accept terms and conditions</label>
                     </div> -->
                     <div class="mt-4">
-                        <button type="submit" class="button w-100pc bg-sec fw-600 hover-opacity-100">Sign up</button>
+                        <input type="submit" class="button w-100pc bg-sec fw-600 hover-opacity-100">Sign up</button>
                     </div>
                     <span class="flex pt-3">Already have an account? <a class="ml-1 cpink no-underline hover-underline" href="/login/student">Log In</a></span>
                 </form>

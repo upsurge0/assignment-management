@@ -6,7 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.management.ASSIGNMENT.Entity.Assignment;
-import com.management.ASSIGNMENT.Repository.StudentRepository;
+import com.management.ASSIGNMENT.Repository.AssignmentRepository;
 
 @SpringBootApplication
 public class ManagementApplication implements CommandLineRunner{
@@ -16,7 +16,7 @@ public class ManagementApplication implements CommandLineRunner{
 	}
 	
     @Autowired
-    private StudentRepository studentRepository;
+    private AssignmentRepository assignmentRepository;
 
 	@Override
 	public void run(String... args) throws Exception {

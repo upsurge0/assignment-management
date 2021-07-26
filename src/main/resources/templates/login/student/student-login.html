@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -31,7 +31,7 @@
     </script>
     <nav class="w-100pc flex flex-column md-flex-row md-px-10 py-5 bg-primary">
         <div class="flex justify-between mx-4 md-mx-s1 lg-mx-l3">
-            <a href="#" class="flex items-center p-2  no-underline lh-2 white fs-m3 md-fs-x13 md-lh-1 fw-900">
+            <a href="/" class="flex items-center p-2  no-underline lh-2 white fs-m3 md-fs-x13 md-lh-1 fw-900">
                 <!-- <img class="max-h-l2 w-auto" src="assets/images/logo.png" /> -->
                 Assign.ly
             </a>
@@ -68,7 +68,7 @@
         <div class="flex flex-row md-flex-row mx-auto justify-center ">
             <div class="flex flex-column asap mt-l3 mb-l3 login-div">
                 <span class="mx-auto mb-4 fs-m5 fw-700">Login | Student</span>
-                <form class="p-10 border shadow br-8 md-w-50pc mx-auto">
+                <form th:action="@{/loginsubmit}" method="post" class="p-10 border shadow br-8 md-w-50pc mx-auto">
                   <div class="flex flex-column">
                     <label class="my-1 black fw-600" for="email-input">Email</label>
                     <input type="email" class="input" id="email-input">
