@@ -57,7 +57,7 @@ public class StudentController {
 	@GetMapping("/assignments")
 	public String listAssignments(Model model) {
 		model.addAttribute("assignments", studentService.getAllAssignments());
-		return "assignments";
+		return "new-assignment";
 	}
 	
 	@GetMapping("/assignments/new")

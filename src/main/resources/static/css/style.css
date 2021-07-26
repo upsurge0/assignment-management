@@ -6,14 +6,6 @@
     --bg-secondary: #F67001;
 }
 
-/* html {
-    scrollbar-width: thin;
-    scrollbar-color: #6649b8 #FFFFFF00;
-    
-} */
-body {
-    /* background-color: var(--bg-primary); */
-}
 
 ::-webkit-scrollbar {
     width: 0.25rem;
@@ -113,11 +105,6 @@ body {
     stroke:white;
 }
 
-.icon {
-    /* width: 3px;
-    height: 3px; */
-    /* margin-top: 4px; */
-  }
 
 .chevron-down {
     background-color: white;
@@ -159,6 +146,27 @@ body {
 
 .icon-color {
     color:#183153;
+}
+
+.assignment-button {
+    /* align-self: flex-end; */
+    justify-content: flex-end;
+    max-width: 100%;
+}
+
+#view {
+    padding-top: 0.16rem;
+}
+#view:hover {
+    color:#49C249;
+}
+
+#update:hover {
+    color:blue;
+}
+
+#delete:hover {
+    color:red;
 }
 
  @media (min-width:641px){ /*756px */
@@ -238,3 +246,10 @@ body {
     }
 } */
 
+
+.assignment-icon {
+    font-size: 3.5rem;
+}
+
+/* .grow-01 { transition: all .1s ease-in-out; } */
+.grow-01:hover { background-color: #f5f5f550; }
