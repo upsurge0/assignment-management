@@ -20,7 +20,7 @@
                             <input
                             type="text"
                             name="Sub"
-                            th:field = "*{Sub}"
+                            th:field = "*{title}"
                             class = "form-control"
                             placeholder="TITLE OF ASSIGNMENT"
                             />
@@ -31,7 +31,7 @@
                             <input
                             type="text"
                             name="Que"
-                            th:field = "*{Que}"
+                            th:field = "*{instructions}"
                             class = "form-control"
                             placeholder="INSTRUCTIONS"
                             />
@@ -42,7 +42,18 @@
                             <input
                             type="text"
                             name="Mar"
-                            th:field = "*{Mar}"
+                            th:field = "*{marks}"
+                            class = "form-control"
+                            placeholder="ENTER THE MAX MARKS"
+                            />
+                        </div>
+
+                        <div class = "form-group">
+                            <label>Course</label>
+                            <input
+                            type="text"
+                            name="Mar"
+                            th:field = "*{course}"
                             class = "form-control"
                             placeholder="ENTER THE MAX MARKS"
                             />
@@ -53,7 +64,7 @@
                             <input
                             type="text"
                             name="Dat"
-                            th:field = "*{Dat}"
+                            th:field = "*{date}"
                             class = "form-control"
                             placeholder="ENTER THE DEADLINE"
                             />

@@ -15,60 +15,95 @@ public class Assignment {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@Column(name = "Sub", nullable = false)
-	private String Sub;
+	@Column(name = "Title", nullable = false)
+	private String title;
+
+	@Column(name = "Course", nullable = true)
+	private String course; //Change to false when added
 	
-	@Column(name = "Que", nullable = false)
-	private String Que;
+	@Column(name = "Instructions", nullable = false)
+	private String instructions;
 	
-	@Column(name = "Mar", nullable = false)
-	private String Mar;
+	@Column(name = "Marks", nullable = true)
+	private Integer marks;
 	
-	@Column(name = "Dat", nullable = false)
-	private String Dat;
+	@Column(name = "Date", nullable = false)
+	private String date;
 	
-	public Assignment()
-	{
-		
-	}
-	
-	public Assignment(String sub, String que, String mar, String dat) {
+	//File to be added
+	//private File file;
+	public Assignment(){}
+
+	public Assignment( String title, String course, String instructions, Integer marks, String date) {
 		super();
-		Sub = sub;
-		Que = que;
-		Mar = mar;
-		Dat = dat;
+		this.title = title;
+		this.course = course;
+		this.instructions = instructions;
+		this.marks = marks;
+		this.date = date;
 	}
+	
+	
 	public long getId() {
 		return id;
 	}
+
+
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getSub() {
-		return Sub;
+
+
+	public String getTitle() {
+		return title;
 	}
-	public void setSub(String sub) {
-		Sub = sub;
+
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
-	public String getQue() {
-		return Que;
+
+
+	public String getCourse() {
+		return course;
 	}
-	public void setQue(String que) {
-		Que = que;
+
+
+	public void setCourse(String course) {
+		this.course = course;
 	}
-	public String getMar() {
-		return Mar;
+
+
+	public String getInstructions() {
+		return instructions;
 	}
-	public void setMar(String mar) {
-		Mar = mar;
+
+
+	public void setInstructions(String instructions) {
+		this.instructions = instructions;
 	}
-	public String getDat() {
-		return Dat;
+
+
+	public Integer getMarks() {
+		return marks;
 	}
-	public void setDat(String dat) {
-		Dat = dat;
+
+
+	public void setMarks(Integer marks) {
+		this.marks = marks;
 	}
+
+
+	public String getDate() {
+		return date;
+	}
+
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+	
+
 	
 	
 

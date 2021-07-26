@@ -82,7 +82,7 @@ public class StudentController {
 	@GetMapping("/assignments")
 	public String listAssignments(Model model) {
 		model.addAttribute("assignments", studentService.getAllAssignments());
-		return "new-assignment";
+		return "assignments";
 	}
 	
 	@GetMapping("/assignments/new")
@@ -91,8 +91,8 @@ public class StudentController {
 		// create assignment object to hold assignment form data
 		Assignment assignment = new Assignment();
 		model.addAttribute("assignment",assignment);
-		return "create_assignment";
-		
+		// return "create_assignment";
+		return "createnewassignment";		
 	}
 	
 	@PostMapping("/assignments")
@@ -114,10 +114,12 @@ public class StudentController {
 		//get assignment from database by id
 		Assignment existingAssignment = studentService.getAssignmentById(id);
 		existingAssignment.setId(id);
-		existingAssignment.setSub(assignment.getSub());
-		existingAssignment.setQue(assignment.getQue());
-		existingAssignment.setMar(assignment.getMar());
-		existingAssignment.setDat(assignment.getDat());
+		existingAssignment.setTitle(assignment.getTitle());
+		existingAssignment.setInstructions(assignment.getInstructions());
+		existingAssignment.setCourse(assignment.getCourse());
+		existingAssignment.setMarks(assignment.getMarks());
+		existingAssignment.setDate(assignment.getDate()); 
+		//existingAssignment.setTime(assignment.getTime());
 		
 		//save updated assignment object
 		studentService.updateAssignment(existingAssignment);

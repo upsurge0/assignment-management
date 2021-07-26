@@ -169,6 +169,23 @@
     color:red;
 }
 
+::-webkit-input-placeholder {
+    font-size: 0.95rem;
+}
+.input {
+    font-size: 0.95rem;
+}
+
+#instruction-input.input {
+    height: auto;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
  @media (min-width:641px){ /*756px */
     #home {
         grid-template-columns: 1fr 1fr;

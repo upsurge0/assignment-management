@@ -18,7 +18,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="/js/jquery.overlayScrollbars.min.js"></script>
     <script src="https://kit.fontawesome.com/594bf01cf2.js" crossorigin="anonymous"></script>
-
 </head>
 
 <body class="muli">
@@ -28,7 +27,7 @@
             $('body').overlayScrollbars({
                 className: "os-theme-dark",
             })
-        })
+        });
     </script>
     <nav class="w-100pc flex flex-row md-px-10 py-5 bg-primary">
         <div class="flex justify-between mx-4 md-mx-s1 lg-mx-l3">
@@ -63,40 +62,56 @@
     </nav>
 
     <!-- hero section -->
-    <div class="flex justify-end">
-        <a th:href = "@{/assignments/new}" class="button bg-pink m-4  hover-opacity-100 grow no-underline">
-            <i class="fas fa-plus-circle mr-2"></i> Create
-        </a>
-    </div>
-    <div class="flex flex-column items-center justify-center mt-8">
-        <div href="" class="w-75pc br-8 border m-3 flex items-center justify-between shadow grow-01 no-underline"
-        th:each= "assignment: ${assignments}">
-            <div class="flex flex-row items-center">
-                <div class="pl-5 bg-cover br-l-8">
-                    <i class="fas fa-book-open assignment-icon flex justify-center gray-darkest"></i>
+    <div class="flex flex-column items-center justify-center mt-3">
+            <div class="flex flex-column asap mt-l3 mb-l3 login-div">
+                <form th:action="@{/assignments}" th:object = "${assignment}" method ="post" class="p-10 border shadow-1 br-8 mx-10">
+                    <h2 class="fs-m3 gray-darkest">New Assignment</h2>
+                  <div class="flex flex-column gray-darkest">
+                    <label class="my-1 fw-600" for="title-input">Title</label>
+                    <input type="text" class="input fw-500 ph-grey-darkest"
+                     id="title-input" placeholder="Enter title"
+                     th:field = "*{title}" required>
+                  </div>
+                  <div class="flex flex-column gray-darkest mt-3">
+                    <label class="my-1 fw-600" for="instruction-input">Instructions</label>
+                    <textarea type="text" class="text-area input resize-vertical br-3" 
+                    id="instruction-input" placeholder="Enter instructions"
+                    th:field = "*{instructions}"></textarea>
+                    <a href="" class="no-underline mt-2 pink"><i class="fas fa-paperclip mr-1"></i>Attach</a>
+                  </div>
+                  <div class="flex flex-row">
+                      <div class="flex flex-column flex-equal gray-darkest mt-3">
+                        <label class="my-1 fw-600" for="marks-input">Points</label>
+                        <input type="number" min="1" max="100000" 
+                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength = "6" step="1" onkeypress="return event.charCode >= 48 && event.charCode <= 57" 
+                        class="input w-90pc" id="marks-input" placeholder="No points"
+                        th:field = "*{marks}">
+                      </div>
+                      <div class="flex flex-column flex-equal gray-darkest mt-3">
+                        <label class="my-1 fw-600" for="course-input">Course</label>
+                        <input type="text" class="select fw-500 ph-grey-darkest" id="course-input" placeholder="Select Course"
+                        th:field = "*{course}" required>
+                      </div>
+                  </div>
+                  <div class="flex flex-row">
+                    <div class="flex flex-column flex-equal gray-darkest mt-3">
+                      <label class="my-1 fw-600" for="date-input">Date Due</label>
+                      <input type="date" min="1" max="100000" 
+                      class="input w-90pc" id="date-input" placeholder="" 
+                      th:field = "*{date}" required>
+                    </div>
+                    <div class="flex flex-column flex-equal gray-darkest mt-3">
+                      <label class="my-1 fw-600" for="time-input">Time Due</label>
+                      <input type="time" class="select fw-500 ph-grey-darkest" id="time-input" 
+                      required> <!--th:field = "*{time}"-->
+                    </div>
                 </div>
-                <div class="p-5">
-                    <h2 class="gray-darkest fs-m2 fw-600" th:text = "${assignment.Sub}">Assignment 2</h2>
-    
-                    <h5 class="gray-darkest fs-s1 fw-600" th:text = "${assignment.Dat}">Course - Deadline</h5>
-                </div>
+                    <div class="mt-6">
+                        <button type="submit" class="button w-100pc bg-indigo fw-600 hover-opacity-100">Assign</button>
+                    </div>
+
+                </form>
             </div>
-            <div class="assignment-button mr-4 flex items-center">
-                <a id="view" href=""
-                        class = "no-underline">
-                    <i class="fas fa-list-ul"></i>
-                </a>
-                <a id="update" th:href = "@{/assignments/edit/{id}(id=${assignment.id})}" href=""
-                        class = "no-underline ml-4">
-                    <i class="far fa-edit"></i>
-                </a>
-                <a id="delete" th:href = "@{/assignments/{id}(id=${assignment.id})}" href=""
-                        class = "no-underline ml-3">
-                    <i class="far fa-trash-alt"></i>    
-                </a>
-            </div>
-            
-        </div>
 
         
     </div>
