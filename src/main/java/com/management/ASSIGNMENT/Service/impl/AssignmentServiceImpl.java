@@ -33,6 +33,10 @@ public class AssignmentServiceImpl implements AssignmentService {
 		return assignmentRepository.findById(id).get();
 	}
 
+//	@Override
+//	public Assignment getDate(long id){
+//		return assignmentRepository.findById(id).getDate();
+//	}
 	@Override
 	public Assignment updateAssignment(Assignment assignment) {
 		

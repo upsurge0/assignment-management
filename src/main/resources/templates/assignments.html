@@ -78,8 +78,7 @@
                 <div class="p-5">
                     <h2 class="gray-darkest fs-m2 fw-600" th:text = "${assignment.title}">Assignment 2</h2>
     
-                    <h5 class="gray-darkest fs-s1 fw-600" th:text = "${assignment.course} + ' - ' + ${assignment.date}">Course - Deadline</h5>
-                                                                <!--${assignment.course} + -->
+                    <h5 class="gray-darkest fs-s1 fw-600" th:text = "${assignment.course} + ' - ' + ${#dates.format(assignment.date, 'dd.MM.yyyy')}">Course - Deadline</h5>
                 </div>
             </div>
             <div class="assignment-button mr-4 flex items-center">

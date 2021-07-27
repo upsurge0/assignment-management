@@ -9,6 +9,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 import com.management.ASSIGNMENT.Entity.Assignment;
 import com.management.ASSIGNMENT.Entity.Student;
 import com.management.ASSIGNMENT.Repository.StudentRepository;
@@ -17,11 +22,11 @@ import com.management.ASSIGNMENT.Service.AssignmentService;
 @Controller
 public class StudentController {
 	
-	private AssignmentService studentService;
+	private AssignmentService assignmentService;
 
-	public StudentController(AssignmentService studentService) {
+	public StudentController(AssignmentService assignmentService) {
 		super();
-		this.studentService = studentService;
+		this.assignmentService = assignmentService;
 	}
 	
 	@GetMapping("/")
@@ -81,7 +86,16 @@ public class StudentController {
 	//handler method to handle list students and mode and view
 	@GetMapping("/assignments")
 	public String listAssignments(Model model) {
-		model.addAttribute("assignments", studentService.getAllAssignments());
+		List<Assignment> assignments = assignmentService.getAllAssignments();
+		model.addAttribute("assignments", assignments);
+// 		List<Date> dates = new ArrayList<Date>();
+// 		for(Assignment assignment: assignments)
+// 		{
+// 			dates.add(assignment.getDate());
+// 		}
+// //		System.out.println(assignment.getDate());
+// 		System.out.println(dates);
+// 		model.addAttribute("date", dates);
 		return "assignments";
 	}
 	
@@ -91,38 +105,39 @@ public class StudentController {
 		// create assignment object to hold assignment form data
 		Assignment assignment = new Assignment();
 		model.addAttribute("assignment",assignment);
-		// return "create_assignment";
-		return "createnewassignment";		
+		return "create_assignment";		
 	}
 	
 	@PostMapping("/assignments")
 	public String saveAssignment(@ModelAttribute("assignment") Assignment assignment) {
-		studentService.saveAssignment(assignment);
+		assignmentService.saveAssignment(assignment);
 		return "redirect:/assignments";
 		
 	}
 	
 	@GetMapping("/assignments/edit/{id}")
 	public String editAssignmentForm(@PathVariable long id, Model model) {
-		model.addAttribute("assignment",studentService.getAssignmentById(id));
-		return "edit_assignment";
+		model.addAttribute("assignment",assignmentService.getAssignmentById(id));
+//		model.addAttribute("date", assignmentService.get);
+		return "editnewassignment";
 			
 	}
 	
 	@PostMapping("/assignments/{id}")
-	public String updateAssignment(@PathVariable Long id, @ModelAttribute("assignment") Assignment assignment, Model model) {
+	public String updateAssignment(@PathVariable Long id, @ModelAttribute("assignment") Assignment assignment, Model model) throws ParseException {
 		//get assignment from database by id
-		Assignment existingAssignment = studentService.getAssignmentById(id);
+		Assignment existingAssignment = assignmentService.getAssignmentById(id);
 		existingAssignment.setId(id);
 		existingAssignment.setTitle(assignment.getTitle());
 		existingAssignment.setInstructions(assignment.getInstructions());
 		existingAssignment.setCourse(assignment.getCourse());
 		existingAssignment.setMarks(assignment.getMarks());
-		existingAssignment.setDate(assignment.getDate()); 
+		// System.out.println(assignment.getDate());
+		existingAssignment.setDate(assignment.getDate().toString()); 
 		//existingAssignment.setTime(assignment.getTime());
 		
 		//save updated assignment object
-		studentService.updateAssignment(existingAssignment);
+		assignmentService.updateAssignment(existingAssignment);
 		return "redirect:/assignments";
 	}
 	
@@ -130,7 +145,7 @@ public class StudentController {
 	
 	@GetMapping("/assignments/{id}")
 	public String deleteAssignment(@PathVariable Long id) {
-		studentService.deleteAssignmentById(id);
+		assignmentService.deleteAssignmentById(id);
 		return "redirect:/assignments";
 		
 	}
