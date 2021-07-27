@@ -64,7 +64,7 @@
     <!-- hero section -->
     <div class="flex flex-column items-center justify-center mt-3">
             <div class="flex flex-column asap mt-l3 mb-l3 login-div">
-                <form th:action="@{/assignments}" th:object = "${assignment}" method ="post" class="p-10 border shadow-1 br-8 mx-10">
+                <form th:action="@{/assignments/{id} (id=${assignment.id})}" th:object = "${assignment}" method ="post" class="p-10 border shadow-1 br-8 mx-10">
                     <h2 class="fs-m3 gray-darkest">New Assignment</h2>
                   <div class="flex flex-column gray-darkest">
                     <label class="my-1 fw-600" for="title-input">Title</label>
@@ -96,9 +96,9 @@
                   <div class="flex flex-row">
                     <div class="flex flex-column flex-equal gray-darkest mt-3">
                       <label class="my-1 fw-600" for="date-input">Date Due</label>
-                      <input type="date" min="1" max="100000" 
-                      class="input w-90pc" id="date-input" placeholder="" 
-                      th:field = "*{date}" required>
+                      <input type="date"
+                      class="input w-90pc" id="date-input" placeholder=""
+                      th:field = "*{sdate}" required>
                     </div>
                     <div class="flex flex-column flex-equal gray-darkest mt-3">
                       <label class="my-1 fw-600" for="time-input">Time Due</label>
