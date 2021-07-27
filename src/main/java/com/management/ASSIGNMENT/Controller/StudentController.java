@@ -133,7 +133,7 @@ public class StudentController {
 		existingAssignment.setCourse(assignment.getCourse());
 		existingAssignment.setMarks(assignment.getMarks());
 		// System.out.println(assignment.getDate());
-		existingAssignment.setDate(assignment.getDate().toString()); 
+		existingAssignment.setSdate(assignment.getSdate()); 
 		//existingAssignment.setTime(assignment.getTime());
 		
 		//save updated assignment object
