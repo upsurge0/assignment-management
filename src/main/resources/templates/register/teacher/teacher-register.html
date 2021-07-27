@@ -68,14 +68,14 @@
         <div class="flex flex-row md-flex-row mx-auto justify-center ">
             <div class="flex flex-column asap my-auto login-div">
                 <span class="mx-auto mb-4 fs-m5 fw-700">Register | Teacher</span>
-                <form class="p-10 border shadow br-8 md-w-50pc mx-auto">
+                <form th:action="@{/processregisterTeacher}" method="post" class="p-10 border shadow br-8 md-w-50pc mx-auto">
                   <div class="flex flex-column">
                     <label class="my-1 black fw-600" for="email-input">Email</label>
-                    <input type="email" class="input" id="email-input">
+                    <input type="email" name="email" class="input" id="email-input">
                   </div>
                   <div class="flex flex-column mt-3">
                     <label class="my-1 black fw-600" for="password-input">Password</label>
-                    <input type="password" class="input" id="password-input">
+                    <input type="password" name="password" class="input" id="password-input">
                   </div>
                   <div class="flex flex-column mt-3">
                     <label class="my-1 black fw-600" for="password-input">Confirm Password</label>

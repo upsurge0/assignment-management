@@ -16,7 +16,9 @@ import java.util.List;
 
 import com.management.ASSIGNMENT.Entity.Assignment;
 import com.management.ASSIGNMENT.Entity.Student;
+import com.management.ASSIGNMENT.Entity.Teacher;
 import com.management.ASSIGNMENT.Repository.StudentRepository;
+import com.management.ASSIGNMENT.Repository.TeacherRepository;
 import com.management.ASSIGNMENT.Service.AssignmentService;
 
 @Controller
@@ -66,23 +68,43 @@ public class StudentController {
 	@Autowired
 	StudentRepository perRepo;
 	
+	@Autowired
+	TeacherRepository perTeacher;
+	
 	@PostMapping("/processregister")
 	public String registerSubmit(Student person) {
 		perRepo.save(person);
-		return "login";
+		return "login/student/student-login";
 	}
 	
+	@PostMapping("/processregisterTeacher")
+	public String registerTeacher(Teacher teacher) {
+		System.out.println(teacher.getPassword());
+		perTeacher.save(teacher);
+		return "login/teacher/teacher-login";
+	}
 	@PostMapping("/loginsubmit")
 	public String loginSubmit(@RequestParam String email, @RequestParam String password) {
 		Student tempPerson = perRepo.findByEmail(email);
 		
 		if(tempPerson!=null && tempPerson.getPassword().equals(password)) { 
-			return "success";
+			return "redirect:/assignments";
 		}
 		
 		return "error";
 	}
 	
+	@PostMapping("/loginsubmitTeacher")
+	public String loginSubmitTeacher(@RequestParam("email") String email, @RequestParam("password") String password) {
+		System.out.println(email);
+		Teacher tempPerson = perTeacher.findByEmail(email);
+		System.out.println(tempPerson);
+		if(tempPerson!=null && tempPerson.getPassword().equals(password)) { 
+			return "redirect:/assignments";
+		}
+		
+		return "error";
+	}
 	//handler method to handle list students and mode and view
 	@GetMapping("/assignments")
 	public String listAssignments(Model model) {
