@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import com.management.ASSIGNMENT.Entity.Assignment;
@@ -29,52 +27,19 @@ public class StudentController {
 		this.assignmentService = assignmentService;
 	}
 	
-	@GetMapping("/")
-	public String home() {
-		return "index";
-	}
-	
-	//Registration
-	@GetMapping("/register")
-	public String register() {
-		return "register/choose-role";
-	}
-	
-	@GetMapping("/register/student")
-	public String register_student() {
-		return "register/student/student-register";
-	}
-	
-	@GetMapping("/register/teacher")
-	public String register_teacher() {
-		return "register/teacher/teacher-register";
-	}
-	
-	//Login
-	
-	@GetMapping("/login/student")
-	public String login_student() {
-		return "login/student/student-login";
-	}
-	
-	@GetMapping("/login/teacher")
-	public String login_teacher() {
-		return "login/teacher/teacher-login";
-	}
-	
 	//Handle Login/Register
 	@Autowired
-	StudentRepository perRepo;
+	StudentRepository studentRepo;
 	
 	@PostMapping("/processregister")
-	public String registerSubmit(Student person) {
-		perRepo.save(person);
-		return "login";
+	public String registerSubmit(Student student) {
+		studentRepo.save(student);
+		return "assignments";
 	}
 	
 	@PostMapping("/loginsubmit")
 	public String loginSubmit(@RequestParam String email, @RequestParam String password) {
-		Student tempPerson = perRepo.findByEmail(email);
+		Student tempPerson = studentRepo.findByEmail(email);
 		
 		if(tempPerson!=null && tempPerson.getPassword().equals(password)) { 
 			return "success";
@@ -88,14 +53,6 @@ public class StudentController {
 	public String listAssignments(Model model) {
 		List<Assignment> assignments = assignmentService.getAllAssignments();
 		model.addAttribute("assignments", assignments);
-// 		List<Date> dates = new ArrayList<Date>();
-// 		for(Assignment assignment: assignments)
-// 		{
-// 			dates.add(assignment.getDate());
-// 		}
-// //		System.out.println(assignment.getDate());
-// 		System.out.println(dates);
-// 		model.addAttribute("date", dates);
 		return "assignments";
 	}
 	
