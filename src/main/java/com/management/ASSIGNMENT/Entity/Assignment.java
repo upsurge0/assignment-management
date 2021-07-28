@@ -35,21 +35,25 @@ public class Assignment {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private String sdate;
 	
+	@Column(name = "STime", nullable = false)
+	@DateTimeFormat(pattern = "HH:mm:ss")
+	private String stime;
 
 	@Column(name = "Date", nullable = false)
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@DateTimeFormat(pattern = "yyyy-MM-dd ")
 	private Date date;
 	
 	//File to be added
 	//private File file;
 	public Assignment(){}
 
-	public Assignment( String title, String course, String instructions, Integer marks, String sdate) {
+	public Assignment( String title, String course, String instructions, Integer marks, String sdate, String stime) {
 		super();
 		this.title = title;
 		this.course = course;
 		this.instructions = instructions;
 		this.marks = marks;
+		this.stime = stime;
 		this.sdate = sdate;
 	}
 	
@@ -107,26 +111,42 @@ public class Assignment {
 	public String getSdate() {
 		return sdate;
 	}
+
+	public String getStime() {
+		return stime;
+	}
+
+	public void setStime(String stime) {
+		// DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		this.stime = stime;
+	}
 	
 	public void setSdate(String sdate) throws ParseException {
 		// DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		System.out.println(date);
-		Date dateTime = new SimpleDateFormat("yyyy-MM-dd").parse(sdate);
-		this.sdate = sdate;
-		this.date = dateTime;
+		// String stime = this.stime;
+		// String combinedDate = sdate + stime;
+		this.sdate=sdate;
+		
 	}
 
-	public Date getDate() {
+	public Date getDate(){
 		return date;
 	}
-	
-	// public void setDate(String date) throws ParseException {
-	// 	// DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-	// 	System.out.println(date);
-	// 	Date dateTime = new SimpleDateFormat("yyyy-MM-dd").parse(date);
-	// 	this.sdate = date;
-	// 	this.date = dateTime;
+
+	// public Date getDate() {
+	// 	return date;
 	// }
+	
+	public void convertTime() throws ParseException{
+		// System.out.println(this.sdate);
+		// System.out.println(this.stime);
+		String combinedDate = this.sdate +" " +  this.stime;
+		System.out.println(combinedDate);
+		Date dateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(combinedDate);
+		System.out.println(dateTime);
+		// this.sdate = sdate;
+		this.date = dateTime;
+	}
 	
 
 	

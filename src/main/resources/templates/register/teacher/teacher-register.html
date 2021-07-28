@@ -22,12 +22,19 @@
 
 <body class="muli">
     <script>
-        // $(function ($) {
-        //     "use strict";
-        //     $('body').overlayScrollbars({
-        //         className: "os-theme-dark",
-        //     })
-        // })
+        var check = function() {
+        if (document.getElementById('password-input').value !==
+            document.getElementById('password-confirm').value){
+            document.getElementById('message').style.color = 'red';
+            document.getElementById('message').innerHTML = "Passwords Don't Match";
+            document.getElementById("submit").disabled = true;
+            return false;
+        } else {
+            // document.getElementById('message').style.color = 'red';
+            document.getElementById('message').innerHTML = "";
+            document.getElementById("submit").disabled = false;
+        }
+    }
     </script>
     <nav class="w-100pc flex flex-column md-flex-row md-px-10 py-5 bg-primary">
         <div class="flex justify-between mx-4 md-mx-s1 lg-mx-l3">
@@ -68,25 +75,30 @@
         <div class="flex flex-row md-flex-row mx-auto justify-center ">
             <div class="flex flex-column asap my-auto login-div">
                 <span class="mx-auto mb-4 fs-m5 fw-700">Register | Teacher</span>
-                <form class="p-10 border shadow br-8 md-w-50pc mx-auto">
-                  <div class="flex flex-column">
+                <form th:action="@{/processregisterTeacher}" method="post" class="p-10 border shadow br-8 md-w-50pc mx-auto">
+                    <div class="flex flex-column">
+                        <label class="my-1 black fw-600" for="name-input">Name</label>
+                        <input type="text" name="name" class="input" id="name-input" required>
+                      </div>
+                    <div class="flex flex-column">
                     <label class="my-1 black fw-600" for="email-input">Email</label>
-                    <input type="email" class="input" id="email-input">
+                    <input type="email" name="email" class="input" id="email-input" required>
                   </div>
                   <div class="flex flex-column mt-3">
                     <label class="my-1 black fw-600" for="password-input">Password</label>
-                    <input type="password" class="input" id="password-input">
+                    <input type="password" name="password" class="input" id="password-input" required>
                   </div>
                   <div class="flex flex-column mt-3">
                     <label class="my-1 black fw-600" for="password-input">Confirm Password</label>
-                    <input type="password" class="input" id="password-confirm">
+                    <input type="password" class="input" id="password-confirm" onkeyup="check();" required>
                   </div>
+                  <span id="message"></span>
                   <!-- <div class="flex items-center mt-4">
                       <input type="checkbox" class="checkbox mr-3" id="tnc-input">
                       <label class="form-check-label" for="tnc-input">Accept terms and conditions</label>
                     </div> -->
                     <div class="mt-4">
-                        <button type="submit" class="button w-100pc bg-sec fw-600 hover-opacity-100">Sign up</button>
+                        <button id="submit" type="submit" class="button w-100pc bg-sec fw-600 hover-opacity-100">Sign up</button>
                     </div>
                     <span class="flex pt-3">Already have an account? <a class="ml-1 cpink no-underline hover-underline" href="/login/teacher">Log In</a></span>
                 </form>

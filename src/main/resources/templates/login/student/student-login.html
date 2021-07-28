@@ -71,11 +71,11 @@
                 <form th:action="@{/loginsubmit}" method="post" class="p-10 border shadow br-8 md-w-50pc mx-auto">
                   <div class="flex flex-column">
                     <label class="my-1 black fw-600" for="email-input">Email</label>
-                    <input type="email" class="input" id="email-input">
+                    <input type="email" name="email" class="input" id="email-input" required>
                   </div>
                   <div class="flex flex-column mt-3">
                     <label class="my-1 black fw-600" for="password-input">Password</label>
-                    <input type="password" class="input" id="password-input">
+                    <input type="password" name="password" class="input" id="password-input" required>
                   </div>
                   <!-- <div class="flex items-center mt-4">
                       <input type="checkbox" class="checkbox mr-3" id="tnc-input">
