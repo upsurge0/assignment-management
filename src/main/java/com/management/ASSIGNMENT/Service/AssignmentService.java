@@ -14,6 +14,4 @@ public interface AssignmentService {
 	Assignment updateAssignment(Assignment assignment);
 	
 	void deleteAssignmentById(Long id);
-
-	void updateTime();
 }

@@ -1,75 +1,104 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset = "ISO-8859-1">
-<title>Student Assignment Management System </title>
-<link rel="stylesheet" 
-    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
-    crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Assign.ly</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/shorthandcss@1.1.1/dist/shorthand.min.css" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Muli:200,300,400,500,600,700,800,900&display=swap" />
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css" />
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Custom Scroll bar -->
+    <link rel="stylesheet" href="/css/OverlayScrollbars.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/js/jquery.overlayScrollbars.min.js"></script>
+    <script src="https://kit.fontawesome.com/594bf01cf2.js" crossorigin="anonymous"></script>
 </head>
-<body>
-    <div class = "container">
-        <div class = "row">
-            <div class = "col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
-                <h1 class = "text-center"> UPDATE ASSIGNMENT</h1>
-                <div class = "card-body">
-                    <form th:action="@{/assignments/{id} (id=${assignment.id})}" th:object = "${assignment}" method ="POST">
-                        <div class = "form-group">
-                            <label> TITLE OF ASSIGNMENT</label>
-                            <input
-                            type="text"
-                            name="Sub"
-                            th:field = "*{Sub}"
-                            class = "form-control"
-                            placeholder="TITLE OF ASSIGNMENT"
-                            />
-                        </div>
-                        
-                        <div class = "form-group">
-                            <label> INSTRUCTIONS</label>
-                            <input
-                            type="text"
-                            name="Que"
-                            th:field = "*{Que}"
-                            class = "form-control"
-                            placeholder="INSTRUCTIONS"
-                            />
-                        </div>
-                        
-                        <div class = "form-group">
-                            <label>MARKS</label>
-                            <input
-                            type="text"
-                            name="Mar"
-                            th:field = "*{Mar}"
-                            class = "form-control"
-                            placeholder="ENTER THE MAX MARKS"
-                            />
-                        </div>
-                        
-                        <div class = "form-group">
-                            <label> DEADLINE</label>
-                            <input
-                            type="text"
-                            name="Dat"
-                            th:field = "*{Dat}"
-                            class = "form-control"
-                            placeholder="ENTER THE DEADLINE"
-                            />
-                        </div>
-                        
-                        <div class = "box-footer">
-                            <button type="submit" class = "btn btn-primary">
-                            SUBMIT
-                            </button>
-                        </div>
-                    
-                    </form>
-                
+
+<body class="muli">
+    <script>
+        $(function ($) {
+            "use strict";
+            $('body').overlayScrollbars({
+                className: "os-theme-dark",
+            })
+        });
+    </script>
+    <nav class="w-100pc flex flex-row md-px-10 py-5 bg-primary" th:include="assignments :: copy"></nav>
+
+    <!-- hero section -->
+    <div class="flex flex-column items-center justify-center mt-3">
+            <div class="flex flex-column asap mt-l3 mb-l3 login-div">
+                <form th:action="@{/assignments/{id} (id=${assignment.id})}" th:object = "${assignment}" method ="post" class="p-10 border shadow-1 br-8 mx-10">
+                    <h2 class="fs-m3 gray-darkest">New Assignment</h2>
+                  <div class="flex flex-column gray-darkest">
+                    <label class="my-1 fw-600" for="title-input">Title</label>
+                    <input type="text" class="input fw-500 ph-grey-darkest"
+                     id="title-input" placeholder="Enter title"
+                     th:field = "*{title}" required>
+                  </div>
+                  <div class="flex flex-column gray-darkest mt-3">
+                    <label class="my-1 fw-600" for="instruction-input">Instructions</label>
+                    <textarea type="text" class="text-area input resize-vertical br-3" 
+                    id="instruction-input" placeholder="Enter instructions"
+                    th:field = "*{instructions}"></textarea>
+                    <a href="" class="no-underline mt-2 pink"><i class="fas fa-paperclip mr-1"></i>Attach</a>
+                  </div>
+                  <div class="flex flex-row">
+                      <div class="flex flex-column flex-equal gray-darkest mt-3">
+                        <label class="my-1 fw-600" for="marks-input">Points</label>
+                        <input type="number" min="1" max="100000" 
+                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength = "6" step="1" onkeypress="return event.charCode >= 48 && event.charCode <= 57" 
+                        class="input w-90pc" id="marks-input" placeholder="No points"
+                        th:field = "*{marks}">
+                      </div>
+                      <div class="flex flex-column flex-equal gray-darkest mt-3">
+                        <label class="my-1 fw-600" for="course-input">Course</label>
+                        <select class="select fw-500 ph-grey-darkest" id="course-input" placeholder="Select Course"
+                        th:field="*{course}" required>
+                            <option th:each= "courses: ${course}" th:text="${courses.name}" th:value="${courses.name}">            
+                            </option>
+                        </select>
+                      </div>
+                  </div>
+                  <div class="flex flex-row">
+                    <div class="flex flex-column flex-equal gray-darkest mt-3">
+                      <label class="my-1 fw-600" for="date-input">Date Due</label>
+                      <input type="date"
+                      class="input w-90pc" id="date-input" placeholder=""
+                      th:field = "*{sdate}" required>
+                    </div>
+                    <div class="flex flex-column flex-equal gray-darkest mt-3">
+                      <label class="my-1 fw-600" for="time-input">Time Due</label>
+                      <input type="time" class="select fw-500 ph-grey-darkest" id="time-input" 
+                      th:field = "*{stime}" required> <!---->
+                    </div>
                 </div>
+                    <div class="mt-6">
+                        <button type="submit" class="button w-100pc bg-indigo fw-600 hover-opacity-100">Assign</button>
+                    </div>
+
+                </form>
             </div>
-        </div>
+
+        
     </div>
+    
+    
+
+    <!-- footer -->
+   
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>
+    <script
+        src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll@15.0.0/dist/smooth-scroll.polyfills.min.js"></script>
+    <script src="assets/js/script.js"></script>
 </body>
+
 </html>

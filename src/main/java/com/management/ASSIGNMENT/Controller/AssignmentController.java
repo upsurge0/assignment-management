@@ -1,83 +1,70 @@
 package com.management.ASSIGNMENT.Controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import com.management.ASSIGNMENT.Entity.Assignment;
 import com.management.ASSIGNMENT.Entity.Course;
-import com.management.ASSIGNMENT.Entity.Student;
-import com.management.ASSIGNMENT.Entity.Teacher;
-import com.management.ASSIGNMENT.Repository.StudentRepository;
-import com.management.ASSIGNMENT.Repository.TeacherRepository;
 import com.management.ASSIGNMENT.Service.AssignmentService;
 import com.management.ASSIGNMENT.Service.CourseService;
-
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 @Controller
-public class StudentController {
-	
-	private AssignmentService assignmentService;
+public class AssignmentController {
+
+    private AssignmentService assignmentService;
 	private CourseService courseService;
 
-	public StudentController(AssignmentService assignmentService, CourseService courseService) {
+	public AssignmentController(AssignmentService assignmentService, CourseService courseService) {
 		super();
 		this.assignmentService = assignmentService;
 		this.courseService = courseService;
 	}
-	
-	//Handle Login/Register
-	@Autowired
-	StudentRepository studentRepo;
-	
-	@Autowired
-	TeacherRepository perTeacher;
-	
-	@PostMapping("/processregister")
-	public String registerSubmit(Student student) {
-		studentRepo.save(student);
-		return "login/student/student-login";
-	}
-	
-	@PostMapping("/processregisterTeacher")
-	public String registerTeacher(Teacher teacher) {
-		System.out.println(teacher.getPassword());
-		perTeacher.save(teacher);
-		return "login/teacher/teacher-login";
-	}
-	@PostMapping("/loginsubmit")
-	public String loginSubmit(@RequestParam String email, @RequestParam String password) {
-		Student tempPerson = studentRepo.findByEmail(email);
-		
-		if(tempPerson!=null && tempPerson.getPassword().equals(password)) { 
-			return "redirect:/assignments";
-		}
-		
-		return "error";
-	}
-	
-	@PostMapping("/loginsubmitTeacher")
-	public String loginSubmitTeacher(@RequestParam("email") String email, @RequestParam("password") String password) {
-		System.out.println(email);
-		Teacher tempPerson = perTeacher.findByEmail(email);
-		System.out.println(tempPerson);
-		if(tempPerson!=null && tempPerson.getPassword().equals(password)) { 
-			return "redirect:/assignments";
-		}
-		
-		return "error";
-	}
-	//handler method to handle list students and mode and view
-	@GetMapping("/assignments")
-	public String listAssignments(Model model) {
+
+    @GetMapping("/assignments-student")
+    public String listStudentAssignments(Model model, HttpSession session){
+        model.addAttribute("assignments", assignmentService.getAllAssignments());
+        @SuppressWarnings("unchecked")
+		List<String> notes = (List<String>) session.getAttribute("USER_SESSION");
+        String user = new String();
+        if (notes!=null) {        	
+        	user = notes.get(0);
+        }
+        model.addAttribute("username", user!=null? user:new ArrayList<>());
+        return "assignments-student";
+    }
+
+    @GetMapping("/submit-page/{id}")
+    public String studentSubmitForm(@PathVariable long id, Model model){
+        model.addAttribute("assignments", assignmentService.getAssignmentById(id));
+        return "submit-assignment";
+    }
+
+    @PostMapping("/submit-assignment/{id}")
+    public String studentSubmit(@PathVariable long id, @ModelAttribute Assignment assignment){
+        Assignment existingAssignment = assignmentService.getAssignmentById(id);
+        // existingAssignment.submit();
+        return "redirect:/assignments-student";
+    }
+
+    @GetMapping("/assignments")
+	public String listAssignments(Model model, HttpSession session) {
 		List<Assignment> assignments = assignmentService.getAllAssignments();
+		@SuppressWarnings("unchecked")
+		List<String> notes = (List<String>) session.getAttribute("USER_SESSION");
+        String user = new String();
+        if (notes!=null) {        	
+        	user = notes.get(0);
+        }
+        model.addAttribute("username", user!=null? user:new ArrayList<>());
+//        return "home";
 		model.addAttribute("assignments", assignments);
 		return "assignments";
 	}
@@ -107,7 +94,7 @@ public class StudentController {
 	public String editAssignmentForm(@PathVariable long id, Model model) {
 		model.addAttribute("assignment",assignmentService.getAssignmentById(id));
 		model.addAttribute("course", courseService.getAllCourses());
-		return "editnewassignment";
+		return "edit_assignment";
 			
 	}
 	
@@ -144,5 +131,4 @@ public class StudentController {
 	public String getCourses(){
 		return "manage-course";
 	}
-
 }

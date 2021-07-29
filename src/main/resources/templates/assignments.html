@@ -30,7 +30,7 @@
             })
         });
     </script>
-    <nav class="w-100pc flex flex-row md-px-10 py-5 bg-primary">
+    <nav class="w-100pc flex flex-row md-px-10 py-5 bg-primary" th:fragment="copy">
         <div class="flex justify-between mx-4 md-mx-s1 lg-mx-l3">
             <a href="/" class="flex items-center p-2  no-underline lh-2 white fs-m3 md-fs-x13 md-lh-1 fw-900">
                 <!-- <img class="max-h-l2 w-auto" src="assets/images/logo.png" /> -->
@@ -52,9 +52,9 @@
                 <div class="dropdown-menu absolute z-100 top-100pc py-1 fs-s1 ">
                     <div class="shadow-3 br-6 bg-white  border">
                         <a class="dropdown-item p-3 hover-bg-gray-lightest no-underline hover-scale-up-1 ease-100 fw-600"
-                            href="/profile">Profile</a>
+                            href="/profile" th:text="${username}"></a>
                         <a class="dropdown-item p-3 pink hover-bg-gray-lightest no-underline hover-scale-up-1 ease-100 fw-600"
-                            href="/logout">Log out</a>
+                            th:href="@{/logout}">Log out</a>
                     </div>
                 </div>
 
@@ -78,7 +78,10 @@
                 <div class="p-5">
                     <h2 class="gray-darkest fs-m2 fw-600" th:text = "${assignment.title}">Assignment 2</h2>
     
-                    <h5 class="gray-darkest fs-s1 fw-600" th:text = "${assignment.course} + ' - ' + ${#dates.format(assignment.date, 'dd.MM.yyyy')}">Course - Deadline</h5>
+                    <h5 class="gray-darkest fs-s1 fw-600" th:text = "${assignment.course} + ' - ' 
+                    + 'Due ' + ${#dates.monthName(assignment.date)} + ' ' 
+                    + ${#dates.day(assignment.date)} + ', ' + ${#dates.year(assignment.date)}  + ' '
+                    + ${#dates.format(assignment.date, 'h :mm a')}">Course - Deadline</h5>
                 </div>
             </div>
             <div class="assignment-button mr-4 flex items-center">

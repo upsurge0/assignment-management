@@ -30,33 +30,25 @@
             })
         });
     </script>
-    <nav class="w-100pc flex flex-row md-px-10 py-5 bg-primary" th:include="assignments :: copy"></nav>
+  	<nav class="w-100pc flex flex-row md-px-10 py-5 bg-primary" th:include="assignments :: copy"></nav>
+    
 
     <!-- hero section -->
-    <div class="flex justify-end">
-        <a th:href = "@{/assignments/new}" class="button bg-pink m-4  hover-opacity-100 grow no-underline">
-            <i class="fas fa-plus-circle mr-2"></i> Create
+    <div class="flex flex-column items-center justify-center mt-8">
+        <a th:href="@{/submit-page/{id} (id=${assignment.id})}" class="w-75pc br-8 border m-3 flex items-center justify-between shadow grow-01 no-underline"
+        th:each= "assignment: ${assignments}">
+            <div class="flex flex-row items-center">
+                <div class="pl-5 bg-cover br-l-8">
+                    <i class="fas fa-book-open assignment-icon flex justify-center gray-darkest"></i>
+                </div>
+                <div class="p-5">
+                    <h2 class="gray-darkest fs-m2 fw-600" th:text = "${assignment.title}">Assignment 2</h2>
+    
+                    <h5 class="gray-darkest fs-s1 fw-600" th:text = "${assignment.course} + ' - ' + ${#dates.format(assignment.date, 'dd.MM.yyyy')}">Course - Deadline</h5>
+                </div>
+            </div>
+            
         </a>
-    </div>
-    <div class="flex flex-column items-center justify-center mt-8 mx-10">
-        <div class="table-container text-center cell-border">
-            <table class="bg-grey-light bc-slategray-light black">
-                <thead th:each= "course: ${course}" class="white bg-primary">
-                    <tr>
-                        <td>ID</td>
-                        <!-- <td>Name</td> -->
-                        <!-- <td></td> -->
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td th:text = "${course.students}">10</td>
-                        <!-- <td th:text = "${student.name}">11</td> -->
-                        <!-- <td th:href = ""></td> -->
-                    </tr>
-                </tbody>
-            </table>
-        </div>
 
         
     </div>

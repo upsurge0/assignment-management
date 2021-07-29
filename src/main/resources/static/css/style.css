@@ -180,6 +180,10 @@
     height: auto;
 }
 
+.fa-chevron-down {
+    font-size: 0.6rem;
+}
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;

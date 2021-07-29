@@ -15,8 +15,7 @@
     <link rel="stylesheet" href="/css/OverlayScrollbars.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="/js/jquery.overlayScrollbars.min.js"></script>
-    
-   
+    <script src="https://kit.fontawesome.com/594bf01cf2.js" crossorigin="anonymous"></script>  
 </head>
 
 <body class="muli">
@@ -28,7 +27,7 @@
             })
         })
     </script>
-    <nav class="w-100pc flex flex-column md-flex-row md-px-10 py-5 bg-primary">
+    <nav class="w-100pc flex flex-column md-flex-row md-px-10 py-5 bg-primary" th:fragment="copy">
         <div class="flex justify-between mx-4 md-mx-s1 lg-mx-l3">
             <a href="/" class="flex items-center p-2  no-underline lh-2 white fs-m3 md-fs-x13 md-lh-1 fw-900">
                 <!-- <img class="max-h-l2 w-auto" src="assets/images/logo.png" /> -->
@@ -40,13 +39,16 @@
             </a>
         </div>
         <div id="nav-items" class="hidden flex sm-w-100pc flex-column md-flex md-flex-row md-justify-end items-center">
-            <a href="#features" class="fs-s1 mx-3 py-3 white no-underline hover-underline">Features</a>
-            <a href="#footer" class="fs-s1 mx-3 py-3 white no-underline hover-underline">About</a>
+            <div th:if="${#httpServletRequest.requestURI == '/'}">
+                <a href="#features" class="fs-s1 mx-3 py-3 white no-underline hover-underline">Features</a>
+                <a href="#footer" class="fs-s1 mx-3 py-3 white no-underline hover-underline">About</a>
+            </div>
             <div id="dropdown" class="relative inline-block flex mx-5">
                 <a href="#" class="button bg-sec white fw-600 no-underline hover-opacity-100 ease-100" data-toggle="dropdown">
                     Log In
-                    <img src="assets/icons/chevron-down.svg" class="h-3 w-3 ml-1">
+                    <!-- <img src="/assets/icons/chevron-down.svg" class="h-3 w-3 ml-1"> -->
                     <!-- <div class="icon chevron-down w-3 h-3"></div> -->
+                    <i class="fas fa-chevron-down ml-1"></i>
                 </a>
                 <div class="dropdown-menu absolute z-100 top-100pc py-1 fs-s1 ">
                     <div class="shadow-3 br-6 bg-white  border">

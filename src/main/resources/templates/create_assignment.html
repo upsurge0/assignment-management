@@ -29,37 +29,7 @@
             })
         });
     </script>
-    <nav class="w-100pc flex flex-row md-px-10 py-5 bg-primary">
-        <div class="flex justify-between mx-4 md-mx-s1 lg-mx-l3">
-            <a href="/" class="flex items-center p-2  no-underline lh-2 white fs-m3 md-fs-x13 md-lh-1 fw-900">
-                <!-- <img class="max-h-l2 w-auto" src="assets/images/logo.png" /> -->
-                Assign.ly
-            </a>
-            <!-- <a data-toggle="#dropdown" data-target="#nav-items" href="#"
-                class="flex items-center ml-auto md-hidden white no-underline opacity-100 ease-100 p-1 m-3">
-                <img src="/assets/icons/menu.svg" class="h-3 w-3 ml-1">
-                <i class="far fa-user-circle fs-m3"></i>
-            </a> -->
-        </div>
-        <div id="nav-items" class="flex w-100pc no-wrap items-center justify-end">
-            <div id="dropdown" class="relative inline-block flex mx-5">
-                <a href="#" class="white fw-600 no-underline hover-opacity-100 ease-100"
-                    data-toggle="dropdown">
-                    <i class="far fa-user-circle fs-m3"></i>
-                    <!-- <img src="/assets/icons/chevron-down.svg" class="h-3 w-3 ml-1"> -->
-                </a>
-                <div class="dropdown-menu absolute z-100 top-100pc py-1 fs-s1 ">
-                    <div class="shadow-3 br-6 bg-white  border">
-                        <a class="dropdown-item p-3 hover-bg-gray-lightest no-underline hover-scale-up-1 ease-100 fw-600"
-                            href="/profile">Profile</a>
-                        <a class="dropdown-item p-3 pink hover-bg-gray-lightest no-underline hover-scale-up-1 ease-100 fw-600"
-                            href="/logout">Log out</a>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </nav>
+    <nav class="w-100pc flex flex-row md-px-10 py-5 bg-primary" th:include="assignments :: copy"></nav>
 
     <!-- hero section -->
     <div class="flex flex-column items-center justify-center mt-3">
