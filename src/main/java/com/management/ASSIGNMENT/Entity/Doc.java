@@ -26,6 +26,9 @@ public class Doc {
 
 	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "doc")
 	private Submission submission;
+
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "doc")
+	private Assignment assignment;
 	
 	public Doc(){}
 	public Doc(String docName, String docType, byte[] data) {
@@ -33,6 +36,7 @@ public class Doc {
 		this.docName = docName;
 		this.docType = docType;
 		this.data = data;
+		// this.submission = submission;
 	}
 
 	public Integer getId() {
@@ -73,4 +77,18 @@ public class Doc {
 	public void setData(byte[] data) {
 		this.data = data;
 	}	
+
+	public Submission getSubmission() {
+		return submission;
+	}
+	public void setSubmission(Submission submission) {
+		this.submission = submission;
+	}
+
+	public Assignment getAssignment() {
+		return assignment;
+	}
+	public void setAssignment(Assignment assignment) {
+		this.assignment = assignment;
+	}
 }

@@ -34,7 +34,9 @@
     <!-- hero section -->
     <div class="flex flex-column items-center justify-center mt-3">
             <div class="flex flex-column asap mt-l3 mb-l3 login-div">
-                <form th:action="@{/assignments/{id} (id=${assignment.id})}" th:object = "${assignment}" method ="post" class="p-10 border shadow-1 br-8 mx-10">
+                <form th:action="@{/assignments/{id} (id=${assignment.id})}" 
+                th:object = "${assignment}" method ="post"
+                 class="p-10 border shadow-1 br-8 mx-10" enctype="multipart/form-data">
                     <h2 class="fs-m3 gray-darkest">New Assignment</h2>
                   <div class="flex flex-column gray-darkest">
                     <label class="my-1 fw-600" for="title-input">Title</label>
@@ -47,7 +49,16 @@
                     <textarea type="text" class="text-area input resize-vertical br-3" 
                     id="instruction-input" placeholder="Enter instructions"
                     th:field = "*{instructions}"></textarea>
-                    <a href="" class="no-underline mt-2 pink"><i class="fas fa-paperclip mr-1"></i>Attach</a>
+                    <!-- <a href="" class="no-underline mt-2 pink"><i class="fas fa-paperclip mr-1"></i>Attach</a> -->
+                    <div class="flex flex-column gray-darkest mt-3">
+                        <div class="flex">
+                            <label class="custom-file-upload pink">
+                                <input type="file" name="files" class="input ml-3" 
+                                accept=".gif,.jpg,.jpeg,.png,.doc,.docx,.pdf,.txt" required>
+                                <i class="fas fa-paperclip mr-1"></i>Attach
+                            </label>
+                    </div>
+                      </div>
                   </div>
                   <div class="flex flex-row">
                       <div class="flex flex-column flex-equal gray-darkest mt-3">

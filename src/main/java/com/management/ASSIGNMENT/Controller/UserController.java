@@ -11,9 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-
-import com.management.ASSIGNMENT.Entity.Assignment;
-import com.management.ASSIGNMENT.Entity.Course;
 import com.management.ASSIGNMENT.Entity.Student;
 import com.management.ASSIGNMENT.Entity.Teacher;
 import com.management.ASSIGNMENT.Repository.StudentRepository;
@@ -34,15 +31,22 @@ public class UserController {
 	
 	@PostMapping("/processregister")
 	public String registerSubmit(Student student) {
-		studentRepo.save(student);
-		return "login/student/student-login";
+		Student tempPerson = studentRepo.findByEmail(student.getEmail());
+		if(tempPerson == null){
+			studentRepo.save(student);
+			return "redirect:/login/student?create=success";
+		}
+		return "redirect:/register/student?error=exists";
 	}
 	
 	@PostMapping("/processregisterTeacher")
 	public String registerTeacher(Teacher teacher) {
-		// System.out.println(teacher.getPassword());
-		perTeacher.save(teacher);
-		return "login/teacher/teacher-login";
+		Teacher tempPerson = perTeacher.findByEmail(teacher.getEmail());
+		if(tempPerson == null){
+			perTeacher.save(teacher);
+			return "redirect:/login/teacher?create=success";
+		}
+		return "redirect:/register/teacher?error=exists";
 	}
 	@PostMapping("/loginsubmit")
 	public String loginSubmit(@RequestParam String email, @RequestParam String password,  HttpServletRequest request) {
@@ -73,8 +77,7 @@ public class UserController {
 			return "redirect:/assignments-student";
 		}
 		
-		return "error";
-		
+		return "redirect:/login/student?error=bad";
 		
 	}
 	
@@ -107,7 +110,7 @@ public class UserController {
 			return "redirect:/assignments";
 		}
 		
-		return "error";
+		return "redirect:/login/teacher?error=bad";
 	}
 	
 	 @GetMapping("/logout")

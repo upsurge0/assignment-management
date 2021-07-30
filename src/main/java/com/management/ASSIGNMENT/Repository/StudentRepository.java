@@ -7,4 +7,5 @@ import com.management.ASSIGNMENT.Entity.Student;
 
 public interface StudentRepository extends JpaRepository<Student, Long>{
 	Student findByEmail(String email);
+	Student findById(long id);
 }

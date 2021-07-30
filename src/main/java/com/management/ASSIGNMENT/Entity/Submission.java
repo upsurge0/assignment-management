@@ -1,8 +1,6 @@
 package com.management.ASSIGNMENT.Entity;
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -29,9 +27,6 @@ public class Submission {
 
 	@Column(name = "studentId", nullable = true)
 	private Long studentId;
-
-    // @Column(name = "assignment_id", nullable = true)
-	// private String assignmentId; //Change to false when added
 	
 	@Column(name = "Marks", nullable = true)
 	private Integer marks;
@@ -71,14 +66,6 @@ public class Submission {
         this.studentId = studentId;
     }
 
-    // public String getAssignmentId() {
-    //     return assignmentId;
-    // }
-
-    // public void setAssignmentId(String assignmentId) {
-    //     this.assignmentId = assignmentId;
-    // }
-
     public Integer getMarks() {
         return marks;
     }
@@ -111,5 +98,4 @@ public class Submission {
         this.assignment = existingAssignment;
     }
     
-
 }

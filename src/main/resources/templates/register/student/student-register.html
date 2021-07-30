@@ -70,8 +70,14 @@
                     </div>
                     <span class="flex pt-3">Already have an account? <a class="ml-1 cpink no-underline hover-underline" href="/login/student">Log In</a></span>
                 </form>
+                <div th:if="${(param.error != null) and (param.error[0] == 'exists')}">
+                  <div class="flex items-center justify-center fs-10 red">
+                      User Already Exists!
+                  </div>
+                </div>
               </div>
         </div>
+
     </section>
 
     <!-- footer -->

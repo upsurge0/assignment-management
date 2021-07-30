@@ -30,33 +30,51 @@
             })
         });
     </script>
-  	<nav class="w-100pc flex flex-row md-px-10 py-5 bg-primary" th:include="assignments :: copy"></nav>
-    
+    <nav class="w-100pc flex flex-row md-px-10 py-5 bg-primary" th:include="assignments :: copy"></nav>
 
     <!-- hero section -->
-    <div th:if="${#lists.size(assignments) == 0}">
+    <div th:if="${#lists.size(submissions) == 0}">
         <div class="flex items-center justify-center w-100pc h-75vh fs-m3">
-            Yay, no assignments!
+            No Submissions yet!
         </div>
     </div>
-    <div class="flex flex-column items-center justify-center mt-8">
-        <a th:href="@{/submit-page/{id} (id=${assignment.id})}" class="w-75pc br-8 border m-3 flex items-center justify-between shadow grow-01 no-underline"
-        th:each= "assignment: ${assignments}">
-            <div class="flex flex-row items-center">
-                <div class="pl-5 bg-cover br-l-8">
-                    <i class="fas fa-book-open assignment-icon flex justify-center gray-darkest"></i>
-                </div>
-                <div class="p-5">
-                    <h2 class="gray-darkest fs-m2 fw-600" th:text = "${assignment.title}">Assignment 2</h2>
-    
-                    <h5 class="gray-darkest fs-s1 fw-600" th:text = "${assignment.course} + ' - ' 
-                    + 'Due ' + ${#dates.monthName(assignment.date)} + ' ' 
-                    + ${#dates.day(assignment.date)} + ', ' + ${#dates.year(assignment.date)}  + ' '
-                    + ${#dates.format(assignment.date, 'hh:mm a')}">Course - Deadline</h5>
-                </div>
-            </div>
-            
-        </a>
+    <div th:if="${#lists.size(submissions) > 0}" class="flex items-center justify-center mt-8 mx-10">
+        <div class="table-container text-center cell-border flex flex-row flex-inline">
+            <table class="bg-grey-light bc-slategray-light black w-75pc">
+                <thead  class="white bg-primary">
+                    <tr>
+                        <td>ID</td>
+                        <td>Name</td> 
+                        <td>Time Submitted</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each= "submission: ${submissions}">
+                        <td th:text = "${submission.id}">10</td>
+                        <td th:text = "${submission.studentId}">11</td> 
+                        <td th:text = " ${#dates.monthName(submission.subTime)} + ' ' 
+                        + ${#dates.day(submission.subTime)} + ', ' + ${#dates.year(submission.subTime)}  + ' '
+                        + ${#dates.format(submission.subTime, 'hh:mm a')}"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="bg-grey-light bc-slategray-light black w-25pc">
+                <thead  class="white bg-primary">
+                    <tr>
+                        <td>File</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each= "doc: ${docs}">
+                        <td >
+                            <a th:href="@{'/downloadFile/' + ${doc.id}}" 
+                            th:attr="download=${doc.docName}" class="button no-underline bg-primary"
+                            >Download</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
         
     </div>

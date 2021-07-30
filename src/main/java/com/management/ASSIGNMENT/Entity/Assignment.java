@@ -2,12 +2,17 @@ package com.management.ASSIGNMENT.Entity;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
@@ -45,7 +50,7 @@ public class Assignment {
 	@DateTimeFormat(pattern = "HH:mm:ss")
 	private String stime;
 
-	@Column(name = "Date", nullable = false)
+	@Column(name = "Date", nullable = true)
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
 	private Date date;
 
@@ -53,11 +58,16 @@ public class Assignment {
 	@OneToMany(mappedBy = "assignment")
 	private Set<Submission> submissions = new HashSet<>();
 
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "doc_id")
+    private Doc doc;
+
 	//File to be added
 	//private File file;
 	public Assignment(){}
 
-	public Assignment( String title, String course, String instructions, Integer marks, String sdate, String stime) {
+	public Assignment( String title, String course, String instructions, Integer marks, String sdate, String stime,
+	Date date, Doc doc) {
 		super();
 		this.title = title;
 		this.course = course;
@@ -65,6 +75,8 @@ public class Assignment {
 		this.marks = marks;
 		this.stime = stime;
 		this.sdate = sdate;
+		this.date = date;
+		this.doc = doc;
 	}
 	
 	
@@ -132,11 +144,7 @@ public class Assignment {
 	}
 	
 	public void setSdate(String sdate) throws ParseException {
-		// DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		// String stime = this.stime;
-		// String combinedDate = sdate + stime;
-		this.sdate=sdate;
-		
+		this.sdate=sdate;	
 	}
 
 	public Date getDate(){
@@ -146,15 +154,20 @@ public class Assignment {
 	public Set<Submission> getSubmissions() {
 		return submissions;
 	}
+
+	public Doc getDoc() {
+		return doc;
+	}
+
+	public void setDoc(Doc doc) {
+		this.doc = doc;
+	}
 	
 	public void convertTime() throws ParseException{
-		// System.out.println(this.sdate);
-		// System.out.println(this.stime);
 		String combinedDate = this.sdate +" " +  this.stime;
 		System.out.println(combinedDate);
 		Date dateTime = new SimpleDateFormat("yyyy-MM-dd HH:mm").parse(combinedDate);
 		System.out.println(dateTime);
-		// this.sdate = sdate;
 		this.date = dateTime;
 	}
 

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.management.ASSIGNMENT.Entity.Doc;
+import com.management.ASSIGNMENT.Entity.Submission;
 import com.management.ASSIGNMENT.Repository.DocRepository;
 
 @Service
@@ -32,5 +33,13 @@ public class DocStorageService {
 
 	public List<Doc> getFiles() {
 		return docRepository.findAll();
+	}
+
+	public Doc getBySubmissionId(long id){
+		return docRepository.findBySubmissionId(id);
+	}
+
+	public Doc getByAssignmentId(long id){
+		return docRepository.findByAssignmentId(id);
 	}
 }

@@ -33,12 +33,9 @@
     <nav class="w-100pc flex flex-column md-flex-row md-px-10 py-5 bg-primary" th:include="index :: copy"></nav>
 
     <!-- hero section -->
-
-
-    <!-- features -->
     <section id="login-sec" class="px-10 md-p-l5">
         <div class="flex flex-row md-flex-row mx-auto justify-center ">
-            <div class="flex flex-column asap mt-l3 mb-l3 login-div">
+            <div class="flex flex-column asap mt-l3 mb-5 login-div">
                 <span class="mx-auto mb-4 fs-m5 fw-700">Login | Teacher</span>
                 <form th:action="@{/loginsubmitTeacher}" method="post" class="p-10 border shadow br-8 md-w-50pc mx-auto">
                   <div class="flex flex-column">
@@ -59,8 +56,19 @@
                     <span class="flex pt-3">Don't have an account? <a class="ml-1 cpink no-underline hover-underline" href="/register/">Sign up</a></span>
                 </form>
               </div>
-        </div>
+            </div>
+            <div th:if="${(param.error != null) and (param.error[0] == 'bad')}">
+                <div class="flex items-center justify-center fs-10 red">
+                    User Doesn't Exist or Wrong Credentials!
+                </div>
+            </div>
+            <div th:if="${(param.create != null) and (param.create[0] == 'success')}">
+                <div class="flex items-center justify-center fs-10 green">
+                    Account Created Successfully!
+                </div>
+              </div>
     </section>
+
 
     <!-- footer -->
    
