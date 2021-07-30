@@ -44,7 +44,10 @@
                 <div class="p-5">
                     <h2 class="gray-darkest fs-m2 fw-600" th:text = "${assignment.title}">Assignment 2</h2>
     
-                    <h5 class="gray-darkest fs-s1 fw-600" th:text = "${assignment.course} + ' - ' + ${#dates.format(assignment.date, 'dd.MM.yyyy')}">Course - Deadline</h5>
+                    <h5 class="gray-darkest fs-s1 fw-600" th:text = "${assignment.course} + ' - ' 
+                    + 'Due ' + ${#dates.monthName(assignment.date)} + ' ' 
+                    + ${#dates.day(assignment.date)} + ', ' + ${#dates.year(assignment.date)}  + ' '
+                    + ${#dates.format(assignment.date, 'hh:mm a')}">Course - Deadline</h5>
                 </div>
             </div>
             

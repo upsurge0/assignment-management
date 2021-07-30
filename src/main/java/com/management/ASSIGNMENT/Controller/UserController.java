@@ -60,11 +60,13 @@ public class UserController {
 	        }
 	        if (users.size() > 0) {
 	        	users.set(0, tempPerson.getName());
-	            String user =users.get(0);
+	        	users.set(1, String.valueOf(tempPerson.getId()));
+	            // String user =users.get(0);
 	            // System.out.println(user);
 	        }
 	        else {
 	        	users.add(tempPerson.getName());
+	        	users.add(String.valueOf(tempPerson.getId()));
 	        }
 	        
 	        request.getSession().setAttribute("USER_SESSION", users);
@@ -92,11 +94,13 @@ public class UserController {
 	        }
 	        if (users.size() > 0) {
 	        	users.set(0, tempPerson.getName());
-	            String user =users.get(0);
+	        	users.set(1, String.valueOf(tempPerson.getId()));
+	            // String user =users.get(0);
 	            // System.out.println(user);
 	        }
 	        else {
 	        	users.add(tempPerson.getName());
+	        	users.add(String.valueOf(tempPerson.getId()));
 	        }
 	        
 	        request.getSession().setAttribute("USER_SESSION", users);

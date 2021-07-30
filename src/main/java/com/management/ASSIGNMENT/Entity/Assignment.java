@@ -7,9 +7,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.management.ASSIGNMENT.Entity.Submission;
 
 @Entity
 @Table(name= "assignments")
@@ -40,9 +46,13 @@ public class Assignment {
 	private String stime;
 
 	@Column(name = "Date", nullable = false)
-	@DateTimeFormat(pattern = "yyyy-MM-dd ")
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
 	private Date date;
-	
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "assignment")
+	private Set<Submission> submissions = new HashSet<>();
+
 	//File to be added
 	//private File file;
 	public Assignment(){}
@@ -133,9 +143,9 @@ public class Assignment {
 		return date;
 	}
 
-	// public Date getDate() {
-	// 	return date;
-	// }
+	public Set<Submission> getSubmissions() {
+		return submissions;
+	}
 	
 	public void convertTime() throws ParseException{
 		// System.out.println(this.sdate);
@@ -147,9 +157,5 @@ public class Assignment {
 		// this.sdate = sdate;
 		this.date = dateTime;
 	}
-	
-
-	
-	
 
 }

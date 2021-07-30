@@ -1,4 +1,4 @@
-package com.example.loginregister.controller;
+package com.management.ASSIGNMENT.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
@@ -15,8 +15,8 @@ import org.springframework.web.multipart.MultipartFile;
  
 import java.util.List;
 
-import com.example.loginregister.model.Doc;
-import com.example.loginregister.service.DocStorageService;
+import com.management.ASSIGNMENT.Entity.Doc;
+import com.management.ASSIGNMENT.Service.DocStorageService;
 
 @Controller
 public class DocController {
@@ -24,8 +24,7 @@ public class DocController {
 	@Autowired
 	private DocStorageService docStorageService;
 	
-	@GetMapping("/")
-	
+	@GetMapping("/upload")	
 	public String get(Model model) {
 		List<Doc> docs = docStorageService.getFiles();
 		model.addAttribute("docs", docs);

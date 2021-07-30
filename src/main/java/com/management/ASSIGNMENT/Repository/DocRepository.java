@@ -1,8 +1,8 @@
-package com.example.loginregister.repository;
+package com.management.ASSIGNMENT.Repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.example.loginregister.model.Doc;
+import com.management.ASSIGNMENT.Entity.Doc;
 
 public interface DocRepository extends JpaRepository<Doc , Integer> {
 	

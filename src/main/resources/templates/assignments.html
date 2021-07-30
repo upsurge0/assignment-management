@@ -52,7 +52,7 @@
                 <div class="dropdown-menu absolute z-100 top-100pc py-1 fs-s1 ">
                     <div class="shadow-3 br-6 bg-white  border">
                         <a class="dropdown-item p-3 hover-bg-gray-lightest no-underline hover-scale-up-1 ease-100 fw-600"
-                            href="/profile" th:text="${username}"></a>
+                            href="/profile" th:text="${user[0]}"></a>
                         <a class="dropdown-item p-3 pink hover-bg-gray-lightest no-underline hover-scale-up-1 ease-100 fw-600"
                             th:href="@{/logout}">Log out</a>
                     </div>
@@ -81,7 +81,7 @@
                     <h5 class="gray-darkest fs-s1 fw-600" th:text = "${assignment.course} + ' - ' 
                     + 'Due ' + ${#dates.monthName(assignment.date)} + ' ' 
                     + ${#dates.day(assignment.date)} + ', ' + ${#dates.year(assignment.date)}  + ' '
-                    + ${#dates.format(assignment.date, 'h :mm a')}">Course - Deadline</h5>
+                    + ${#dates.format(assignment.date, 'hh:mm a')}">Course - Deadline</h5>
                 </div>
             </div>
             <div class="assignment-button mr-4 flex items-center">
