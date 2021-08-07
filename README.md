@@ -8,6 +8,8 @@ It is made using the following.
 - Shorthand CSS Framework
 - Remote MYSQL
 
+Demo: [demo]
+
 ## Features
 
 - Create Student and Teacher accounts.
@@ -52,4 +54,5 @@ docker run -p 80:8080 --it -d assignment-management
    [Maven]: <https://maven.apache.org/>
    [Srping Boot]: <https://github.com/spring-projects/spring-boot>
    [public repository]: <https://github.com/upsurge0/assignment-management>
+   [demo]: <http://ec2-157-175-87-244.me-south-1.compute.amazonaws.com/>
 
