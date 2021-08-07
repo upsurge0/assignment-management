@@ -22,10 +22,8 @@ public class Course {
     private List<Long> students;
      
     public Course() {}
-    public Course(long id, String name, List<Long> students) {
-        this.id = id;
+    public Course(String name) {
         this.name = name;
-        this.students = students;
     }
     
     public long getId() {

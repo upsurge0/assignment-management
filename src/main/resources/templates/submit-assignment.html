@@ -28,15 +28,34 @@
                 className: "os-theme-dark",
             })
         });
+        function checkAttachment() {
+            var attachment = document.getElementById('attachment');
+            var arrfilepath = attachment.value.split("\\");
+            var filename = arrfilepath[arrfilepath.length - 1];
+            var newfilename = "";
+            if (filename.length > 20)
+                newfilename = filename.substring(0, 19) + "... ." + filename.split('.').pop();
+
+            if (attachment.value !== '') {
+                document.getElementById('attachedFile').innerHTML += newfilename === "" ? filename : newfilename;
+                document.getElementById('attachmentdiv').style.display = "none";
+                document.getElementById('attachment-div').style.display = "block";
+                document.getElementById('attachedFile').style.visibility = "visible";
+            }
+            else {
+                alert('No File Attached');
+            }
+        }
     </script>
      <nav class="w-100pc flex flex-row md-px-10 py-5 bg-primary" th:include="assignments :: copy"></nav>
 
     <!-- hero section -->
     <div class="flex flex-column items-center justify-center mt-3">
-            <div class="flex flex-column asap mt-l3 mb-l3 login-div">
+            <div class="asap mt-l3 login-div">
                 <form th:action="@{/submit-assignment/{assignmentId} (assignmentId=${assignments.id})}"
-                 th:object = "${assignments}" method ="post" class="p-10 border shadow-1 br-8 mx-10 "
+                 th:object = "${assignments}" method ="post" class="flex flex-column justify-between p-10 border shadow-1 br-8 mx-10 assignment"
                  enctype="multipart/form-data">
+                 <div>
                     <div class="flex flex-row">
                         <div class="flex flex-column w-50pc justify-end">
                             <h2 class="fs-m3 gray-darkest" th:text="${assignments.title}">Title</h2>
@@ -44,7 +63,7 @@
                             th:text="'Due ' + ${#dates.monthName(assignments.date)} + ' ' + ${#dates.day(assignments.date)} + ', ' + ${#dates.year(assignments.date)}  + ' '
                             + ${#dates.format(assignments.date, 'hh:mm a')}">Due today, 11:59PM</label>
                         </div>
-                        <div class="flex flex-column justify-end">
+                        <div class="flex flex-column justify-center">
                             <label class="my-1 fw-600" >Points</label>
                             <div th:text="${assignments.marks}">
                                 No points.
@@ -61,23 +80,35 @@
                     <label class="my-1 fw-600 mt-3" for="instruction-input">Reference Materials</label>
                     <a th:href="@{'/downloadFile/' + ${docs.id}}" 
                             th:attr="download=${docs.docName}" 
-                            class="button flex justify-start no-underline black"
+                            class="button filebutton flex justify-start no-underline black"
                             id="filebutton">
                             <i class="far fa-file mr-3 fs-10"></i>
                             <span th:text="${docs.docName}" class="black">tasks.txt</span>
                     </a>
                     <label class="my-1 fw-600 mt-3" for="instruction-input">Your work</label>
-                    <div class="flex">
-                            <label class="custom-file-upload pink">
-                                <input type="file" name="files" class="input ml-3" 
-                                accept=".gif,.jpg,.jpeg,.png,.doc,.docx,.pdf,.txt" required>
+                    <div class="flex flex-column gray-darkest">
+                        <div class="w-50pc" id="attachment-div">
+                            <div class="button filebutton flex justify-start no-underline black w-100pc"
+                                id="attachedFile">
+                                <i class="far fa-file mr-3 fs-10"></i>
+                                <span class="black"></span>
+                            </div>
+                        </div>
+
+                        <div class="flex">
+                            <label class="custom-file-upload pink" id="attachmentdiv">
+                                <input type="file" name="files" class="input ml-3"
+                                    accept=".gif,.jpg,.jpeg,.png,.doc,.docx,.pdf,.txt" id="attachment"
+                                    onchange="checkAttachment()" required>
                                 <i class="fas fa-paperclip mr-1"></i>Attach
                             </label>
+                        </div>
                     </div>
-                  </div>
-                  <div class="h-10">
 
                   </div>
+                 </div>
+                    
+                  
                     <div class="mt-6">
                         <button type="submit" class="button w-100pc bg-indigo fw-600 hover-opacity-100">Turn in</button>
                     </div>

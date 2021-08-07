@@ -6,4 +6,5 @@ import com.management.ASSIGNMENT.Entity.Course;
 
 public interface CourseService {
     List<Course> getAllCourses();
+    void defaultCourses();
 }

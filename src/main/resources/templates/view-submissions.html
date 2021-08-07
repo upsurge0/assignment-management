@@ -40,25 +40,46 @@
     </div>
     <div th:if="${#lists.size(submissions) > 0}" class="flex items-center justify-center mt-8 mx-10">
         <div class="table-container text-center cell-border flex flex-row flex-inline">
-            <table class="bg-grey-light bc-slategray-light black w-75pc">
+            <table class="bg-grey-light bc-slategray-light black">
                 <thead  class="white bg-primary">
                     <tr>
                         <td>ID</td>
-                        <td>Name</td> 
-                        <td>Time Submitted</td>
                     </tr>
                 </thead>
                 <tbody>
                     <tr th:each= "submission: ${submissions}">
                         <td th:text = "${submission.id}">10</td>
-                        <td th:text = "${submission.studentId}">11</td> 
+                    </tr>
+                </tbody>
+            </table>
+            <table class="bg-grey-light bc-slategray-light black">
+                <thead  class="white bg-primary">
+                    <tr>
+                        <td>Name</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each= "name: ${names}">
+                        <td th:text = "${name}">10</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="bg-grey-light bc-slategray-light black">
+                <thead  class="white bg-primary">
+                    <tr>
+                        <td>Time Submitted</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each= "submission: ${submissions}">
                         <td th:text = " ${#dates.monthName(submission.subTime)} + ' ' 
                         + ${#dates.day(submission.subTime)} + ', ' + ${#dates.year(submission.subTime)}  + ' '
                         + ${#dates.format(submission.subTime, 'hh:mm a')}"></td>
                     </tr>
                 </tbody>
             </table>
-            <table class="bg-grey-light bc-slategray-light black w-25pc">
+            
+            <table class="bg-grey-light bc-slategray-light black">
                 <thead  class="white bg-primary">
                     <tr>
                         <td>File</td>
@@ -66,7 +87,7 @@
                 </thead>
                 <tbody>
                     <tr th:each= "doc: ${docs}">
-                        <td >
+                        <td>
                             <a th:href="@{'/downloadFile/' + ${doc.id}}" 
                             th:attr="download=${doc.docName}" class="button no-underline bg-primary"
                             >Download</a>
