@@ -21,88 +21,115 @@
 </head>
 
 <body class="muli">
-    <script>
+    <script th:inline="javascript">
         $(function ($) {
             "use strict";
             $('body').overlayScrollbars({
                 className: "os-theme-dark",
             })
         });
+        function checkAttachment() {
+            var attachment = document.getElementById('attachment');
+            var arrfilepath = attachment.value.split("\\");
+            var filename = arrfilepath[arrfilepath.length - 1];
+            var newfilename = "";
+            if (filename.length > 20)
+                newfilename = filename.substring(0, 19) + "... ." + filename.split('.').pop();
+
+            if (attachment.value !== '') {
+                document.getElementById('attachedFile').innerHTML += newfilename === "" ? filename : newfilename;
+                document.getElementById('attachmentdiv').style.display = "none";
+                document.getElementById('attachment-div').style.display = "block";
+                document.getElementById('attachedFile').style.visibility = "visible";
+            }
+            else {
+                alert('No File Attached');
+            }
+        }
     </script>
     <nav class="w-100pc flex flex-row md-px-10 py-5 bg-primary" th:include="assignments :: copy"></nav>
 
     <!-- hero section -->
     <div class="flex flex-column items-center justify-center mt-3">
-            <div class="flex flex-column asap mt-l3 mb-l3 login-div">
-                <form th:action="@{/assignments}" th:object = "${assignment}" method ="post"
-                 class="p-10 border shadow-1 br-8 mx-10" enctype="multipart/form-data">
-                    <h2 class="fs-m3 gray-darkest">New Assignment</h2>
-                  <div class="flex flex-column gray-darkest">
+        <div class="asap mt-l3 login-div">
+            <form th:action="@{/assignments}" th:object="${assignment}" method="post"
+                class="flex flex-column justify-between p-10 border shadow-1 br-8 mx-10 assignment" enctype="multipart/form-data">
+                <h2 class="fs-m3 gray-darkest">New Assignment</h2>
+                <div class="flex flex-column gray-darkest">
                     <label class="my-1 fw-600" for="title-input">Title</label>
-                    <input type="text" class="input fw-500 ph-grey-darkest"
-                     id="title-input" placeholder="Enter title"
-                     th:field = "*{title}" required>
-                  </div>
-                  <div class="flex flex-column gray-darkest mt-3">
+                    <input type="text" class="input fw-500 ph-grey-darkest" id="title-input" placeholder="Enter title"
+                        th:field="*{title}" required>
+                </div>
+                <div class="flex flex-column gray-darkest mt-3">
                     <label class="my-1 fw-600" for="instruction-input">Instructions</label>
-                    <textarea type="text" class="text-area input resize-vertical br-3" 
-                    id="instruction-input" placeholder="Enter instructions"
-                    th:field = "*{instructions}"></textarea>
-                    <!-- <a href="" class="no-underline mt-2 pink"><i class="fas fa-paperclip mr-1"></i>Attach</a> -->
+                    <textarea type="text" class="text-area input resize-vertical br-3" id="instruction-input"
+                        placeholder="Enter instructions" th:field="*{instructions}"></textarea>
                     <div class="flex flex-column gray-darkest mt-3">
+                        <div class="w-50pc" id="attachment-div">
+                            <div class="button filebutton flex justify-start no-underline black w-90pc"
+                                id="attachedFile">
+                                <i class="far fa-file mr-3 fs-10"></i>
+                                <span class="black"></span>
+                            </div>
+                        </div>
+
                         <div class="flex">
-                            <label class="custom-file-upload pink">
-                                <input type="file" name="files" class="input ml-3" 
-                                accept=".gif,.jpg,.jpeg,.png,.doc,.docx,.pdf,.txt" required>
+                            <label class="custom-file-upload pink" id="attachmentdiv">
+                                <input type="file" name="files" class="input ml-3"
+                                    accept=".gif,.jpg,.jpeg,.png,.doc,.docx,.pdf,.txt" id="attachment"
+                                    onchange="checkAttachment()" required>
                                 <i class="fas fa-paperclip mr-1"></i>Attach
                             </label>
+                        </div>
                     </div>
-                      </div>
-                  </div>
-                  <div class="flex flex-row">
-                      <div class="flex flex-column flex-equal gray-darkest mt-3">
-                        <label class="my-1 fw-600" for="marks-input">Points</label>
-                        <input type="number" min="1" max="100000" 
-                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength = "6" step="1" onkeypress="return event.charCode >= 48 && event.charCode <= 57" 
-                        class="input w-90pc" id="marks-input" placeholder="No points"
-                        th:field = "*{marks}">
-                      </div>
-                      <div class="flex flex-column flex-equal gray-darkest mt-3">
-                        <label class="my-1 fw-600" for="course-input">Course</label>
-                        <select class="select fw-500 ph-grey-darkest" id="course-input" placeholder="Select Course"
-                        th:field="*{course}" required>
-                            <option th:each= "courses: ${course}" th:text="${courses.name}" th:value="${courses.name}">            
-                            </option>
-                        </select>
-                      </div>
-                  </div>
-                  <div class="flex flex-row">
-                    <div class="flex flex-column flex-equal gray-darkest mt-3">
-                      <label class="my-1 fw-600" for="date-input">Date Due</label>
-                      <input type="date"
-                      class="input w-90pc" id="date-input" placeholder="" 
-                      th:field = "*{sdate}" required>
-                    </div>
-                    <div class="flex flex-column flex-equal gray-darkest mt-3">
-                      <label class="my-1 fw-600" for="time-input">Time Due</label>
-                      <input type="time" class="select fw-500 ph-grey-darkest" id="time-input" 
-                      th:field = "*{stime}" required>
-                    </div>
+
                 </div>
+                <div class="items">
+                    <div class="flex flex-row">
+                        <div class="flex flex-column flex-equal gray-darkest mt-3">
+                            <label class="my-1 fw-600" for="marks-input">Points</label>
+                            <input type="number" min="1" max="100000"
+                                oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                                maxlength="6" step="1" onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+                                class="input w-90pc" id="marks-input" placeholder="No points" th:field="*{marks}">
+                        </div>
+                        <div class="flex flex-column flex-equal gray-darkest mt-3">
+                            <label class="my-1 fw-600" for="course-input">Course</label>
+                            <select class="select fw-500 ph-grey-darkest" id="course-input" placeholder="Select Course"
+                                th:field="*{course}" required>
+                                <option th:each="courses: ${course}" th:text="${courses.name}" th:value="${courses.name}">
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="flex flex-row">
+                        <div class="flex flex-column flex-equal gray-darkest mt-3">
+                            <label class="my-1 fw-600" for="date-input">Date Due</label>
+                            <input type="date" class="input w-90pc" id="date-input" placeholder="" th:field="*{sdate}"
+                                required>
+                        </div>
+                        <div class="flex flex-column flex-equal gray-darkest mt-3">
+                            <label class="my-1 fw-600" for="time-input">Time Due</label>
+                            <input type="time" class="select fw-500 ph-grey-darkest" id="time-input" th:field="*{stime}"
+                                required>
+                        </div>
+                    </div>
                     <div class="mt-6">
                         <button type="submit" class="button w-100pc bg-indigo fw-600 hover-opacity-100">Assign</button>
                     </div>
+    
+                </div>
+               
+            </form>
+        </div>
 
-                </form>
-            </div>
 
-        
     </div>
-    
-    
+
+
 
     <!-- footer -->
-   
+
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.js"></script>

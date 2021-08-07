@@ -20,8 +20,16 @@ public class CourseServiceImpl implements CourseService {
 
 	@Override
 	public List<Course> getAllCourses() {
+		defaultCourses();
 		return courseRepository.findAll();
 	}
 
+	@Override
+	public void defaultCourses(){
+		if(courseRepository.findAll().isEmpty()){
+			courseRepository.save(new Course("maths"));
+			courseRepository.save(new Course("science"));
+		}
+	}
 	
 }

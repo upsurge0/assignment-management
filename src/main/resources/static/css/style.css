@@ -113,7 +113,8 @@
 }
 
 .login-div {
-    height:25rem;
+    /* height:25rem; */
+    justify-content: space-between;
     min-width: 100%;
 }
 
@@ -135,9 +136,18 @@ input[type="file"] {
     cursor: pointer;
 }
 
-#filebutton {
+.filebutton {
     width:50%;
     background-color: #F5F5F5;
+}
+
+#attachedFile {
+    display: none;
+    visibility:hidden;
+}
+
+#attachment-div {
+    display: none;
 }
 
 .role-div {
@@ -259,27 +269,11 @@ input::-webkit-inner-spin-button {
         max-height: 50vh;
     }
 }
-/* 
-@media (max-width: 900px){
-    .scale1 {
-        order:-1;
-        max-height:47vh;
-    }
+
+.assignment {
+    min-height:36.5rem;
+    /* min-width: 100%; */
 }
-
-@media (max-width: 1212px) {
-    #home {
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-}
-
-@media (min-width: 1213px) {
-    #home {
-        justify-content: space-around;
-    }
-} */
-
 
 .assignment-icon {
     font-size: 3.5rem;
@@ -287,3 +281,9 @@ input::-webkit-inner-spin-button {
 
 /* .grow-01 { transition: all .1s ease-in-out; } */
 .grow-01:hover { background-color: #f5f5f550; }
+
+.items {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}

@@ -18,6 +18,7 @@ import com.management.ASSIGNMENT.Entity.Submission;
 import com.management.ASSIGNMENT.Service.AssignmentService;
 import com.management.ASSIGNMENT.Service.CourseService;
 import com.management.ASSIGNMENT.Service.DocStorageService;
+import com.management.ASSIGNMENT.Service.StudentService;
 import com.management.ASSIGNMENT.Service.SubmissionService;
 
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -32,14 +33,16 @@ public class AssignmentController {
 	private CourseService courseService;
 	private SubmissionService submissionService;
 	private DocStorageService docStorageService;
+	private StudentService studentService;
 
 	public AssignmentController(AssignmentService assignmentService, CourseService courseService,
-	 SubmissionService submissionService, DocStorageService docStorageService) {
+	 SubmissionService submissionService, DocStorageService docStorageService, StudentService studentService) {
 		super();
 		this.assignmentService = assignmentService;
 		this.courseService = courseService;
 		this.submissionService = submissionService;
 		this.docStorageService = docStorageService;
+		this.studentService = studentService;
 	}
 
 	public List<String> getSessionAttributes(HttpSession session){
@@ -57,8 +60,14 @@ public class AssignmentController {
 			docs.add(docStorageService.getBySubmissionId(submissions.getId()));
 		}
 
+		List<String> names = new ArrayList<>();
+		for(Submission submissions:submission){
+			names.add(studentService.findById(submissions.getStudentId()).getName());
+		}
+
 		model.addAttribute("submissions", submission);
 		model.addAttribute("docs", docs);
+		model.addAttribute("names", names);
         model.addAttribute("user", getSessionAttributes(session));
 		return "view-submissions";
 	}
