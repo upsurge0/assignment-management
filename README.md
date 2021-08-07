@@ -8,6 +8,8 @@ It is made using the following.
 - Shorthand CSS Framework
 - Remote MYSQL
 
+Demo: [demo]
+
 ## Features
 
 - Create Student and Teacher accounts.
@@ -17,17 +19,17 @@ It is made using the following.
 
 ## Tech
 
-Assin.ly‎ uses a number of free and open source projects to work properly:
+Assign.ly‎ uses a number of free and open source projects to work properly:
 
 - [Maven] -  Build and manage any Java-based project.
 - [Shorthand CSS Framework] - Feature rich CSS framework for the new decade
 
-And of course Assin.ly‎ itself is open source with a [public repository]
+And of course Assign.ly‎ itself is open source with a [public repository]
  on GitHub.
 
 ## Installation
 
-Assin.ly‎ can be built using Maven.
+Assign.ly‎ can be built using Maven.
 
 ```sh
 cd assignment-management
@@ -36,7 +38,7 @@ mvn package
 
 ## Docker
 
-Assin.ly‎ is very easy to install and deploy in a Docker container.
+Assign.ly‎ is very easy to install and deploy in a Docker container.
 
 #### Build
 ```sh
@@ -52,4 +54,5 @@ docker run -p 80:8080 --it -d assignment-management
    [Maven]: <https://maven.apache.org/>
    [Srping Boot]: <https://github.com/spring-projects/spring-boot>
    [public repository]: <https://github.com/upsurge0/assignment-management>
+   [demo]: <https://assignly.herokuapp.com/>
 
